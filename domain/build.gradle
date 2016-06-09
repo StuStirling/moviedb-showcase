@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "com.google.dagger:dagger:2.2"
+    compile 'io.reactivex:rxjava:1.1.5'
+
+    // test dependencies
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.+'
+}
