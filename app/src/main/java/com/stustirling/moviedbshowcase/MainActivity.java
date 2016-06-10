@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,15 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.stustirling.moviedbshowcase.internal.di.HasComponent;
+import com.stustirling.moviedbshowcase.internal.di.components.DaggerMovieDBComponent;
+import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
+import com.stustirling.moviedbshowcase.internal.di.modules.PopularMoviesModule;
+import com.stustirling.moviedbshowcase.popularmovies.PopularMoviesFragment;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements HasComponent<MovieDBComponent> {
 
     private SectionsPagerAdapter sectionsPagerAdapter;
     @BindView(R.id.container)
     ViewPager viewPager;
 
+    private MovieDBComponent movieDBComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        initActivity( savedInstanceState );
+        initInjector();
+    }
+
+    private void initActivity(Bundle savedInstanceState) {
+
+    }
+
+    private void initInjector() {
+        movieDBComponent = DaggerMovieDBComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .popularMoviesModule( new PopularMoviesModule())
+                .build();
     }
 
 
@@ -78,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public MovieDBComponent getComponent() {
+        return movieDBComponent;
     }
 
     /**
@@ -129,7 +154,10 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if ( position == 0 )
+                return new PopularMoviesFragment();
+            else
+                return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override

@@ -1,27 +1,32 @@
 package com.stustirling.moviedbshowcase.popularmovies;
 
+import android.util.Log;
+
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularMovies;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import rx.Subscriber;
 
 /**
  * Created by Stu Stirling on 06/06/16.
  */
-public class PopularMoviesController {
+public class PopularMoviesPresenter {
 
     private final GetTop20PopularMovies getPopularMoviesUseCase;
-    private final PopularMoviesView popularMoviesView;
+    private PopularMoviesView popularMoviesView;
 
-    public PopularMoviesController(PopularMoviesView popularMoviesView, GetTop20PopularMovies useCase) {
+    @Inject
+    public PopularMoviesPresenter(GetTop20PopularMovies useCase) {
         super();
-        this.popularMoviesView = popularMoviesView;
         this.getPopularMoviesUseCase = useCase;
     }
 
-    public void init() {
+    public void init( PopularMoviesView popularMoviesView ) {
+        this.popularMoviesView = popularMoviesView;
         popularMoviesView.loading(true);
         getPopularMoviesUseCase.execute(subscriber);
     }
@@ -34,12 +39,13 @@ public class PopularMoviesController {
 
         @Override
         public void onError(Throwable e) {
-
+            Log.e("PMP",e.getMessage());
         }
 
         @Override
         public void onNext(List<MovieSummary> movieSummaries) {
             popularMoviesView.refreshMovieSummaries(movieSummaries);
+            Log.d("PMP","Received list of summaries: "+movieSummaries);
         }
     };
 

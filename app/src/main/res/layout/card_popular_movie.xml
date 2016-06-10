@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<android.support.v7.widget.CardView xmlns:card="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    card:cardElevation="6dp"
+    card:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_cvpm_poster"
+            android:src="@mipmap/poster_placeholder" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Star Wars: The Force Awakens"
+                android:id="@+id/tv_cvpm_title"
+                android:layout_alignParentTop="true"
+                android:textSize="16sp"
+                android:textColor="@color/popularmovies.cardview.title"
+                android:lines="1"
+                android:ellipsize="marquee"
+                android:enabled="false"
+                android:padding="8dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_cvpm_rating"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_grade" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
 
 </android.support.v7.widget.CardView>

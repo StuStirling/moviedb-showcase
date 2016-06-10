@@ -6,6 +6,7 @@ import com.stustirling.moviedbshowcase.domain.repository.MovieDBRepository;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import rx.Observable;
 import rx.Scheduler;
@@ -19,8 +20,8 @@ public class GetTop20PopularMovies extends UseCase {
 
     @Inject
     public GetTop20PopularMovies(MovieDBRepository repo,
-                                 Scheduler threadExecutor,
-                                 Scheduler postExecutionThread ) {
+                                 @Named("threadExecutor") Scheduler threadExecutor,
+                                 @Named("postExecutionThread") Scheduler postExecutionThread ) {
         super(threadExecutor,postExecutionThread);
         this.movieRepo = repo;
 
