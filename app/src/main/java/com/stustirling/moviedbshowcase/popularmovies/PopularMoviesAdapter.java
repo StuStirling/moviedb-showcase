@@ -37,7 +37,7 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         this.popularMovies = new ArrayList<>();
     }
 
-    public void setPopularMovies(List<MovieSummary> popularMovies ) {
+    public void updatePopularMovies(List<MovieSummary> popularMovies ) {
         this.popularMovies = popularMovies;
         this.notifyDataSetChanged();
     }

@@ -29,7 +29,7 @@ public class GetTop20PopularMovies extends UseCase {
 
     @Override
     public Observable<List<MovieSummary>> buildUseCaseObservable() {
-        return movieRepo.getPopularMovies(20);
+        return movieRepo.getPopularMovies();
     }
 
 

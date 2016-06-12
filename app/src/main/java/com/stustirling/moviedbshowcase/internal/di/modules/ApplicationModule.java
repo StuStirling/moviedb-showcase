@@ -28,7 +28,7 @@ public class ApplicationModule {
     }
 
     @Provides @Singleton
-    MovieDBRepository providesMovieDBRepository( MovieDBDataRepository movideDBDataRepository) {
+    MovieDBRepository providesMovieDBRepository(MovieDBDataRepository movideDBDataRepository) {
         return movideDBDataRepository;
     }
 }

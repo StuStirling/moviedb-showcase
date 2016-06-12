@@ -10,7 +10,7 @@ import com.stustirling.moviedbshowcase.internal.di.modules.ActivityModule;
 /**
  * Created by Stu Stirling on 10/06/16.
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

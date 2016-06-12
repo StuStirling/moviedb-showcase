@@ -24,7 +24,7 @@ public class MovieDBApiService implements MovieDBService {
 
     @Override
     public Observable<List<MovieSummaryEntity>> getPopularMovies() {
-        return movieDBApi.getPopularMovies()
+        return movieDBApi.getPopularMovies(1)
                 .map(new Func1<PopularMoviesResponse, List<MovieSummaryEntity>>() {
                     @Override
                     public List<MovieSummaryEntity> call(PopularMoviesResponse popularMoviesResponse) {

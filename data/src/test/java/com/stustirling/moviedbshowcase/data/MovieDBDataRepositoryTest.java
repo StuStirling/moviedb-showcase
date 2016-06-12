@@ -41,7 +41,7 @@ public class MovieDBDataRepositoryTest {
         movieSummaries.add(movieSummary);
         given(mockService.getPopularMovies()).willReturn(Observable.just(movieSummaries));
 
-        movieDataRepo.getPopularMovies(20);
+        movieDataRepo.getPopularMovies();
 
         verify(mockService,times(1)).getPopularMovies();
     }

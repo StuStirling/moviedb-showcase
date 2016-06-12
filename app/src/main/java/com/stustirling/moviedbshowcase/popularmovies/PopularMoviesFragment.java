@@ -70,7 +70,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     @Override
     public void refreshMovieSummaries(List<MovieSummary> movieSummaries) {
-
+        adapter.updatePopularMovies(movieSummaries);
     }
 
     @Override

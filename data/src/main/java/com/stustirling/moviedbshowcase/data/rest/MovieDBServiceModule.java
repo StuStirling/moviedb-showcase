@@ -21,11 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class MovieDBServiceModule {
 
-    @Provides RxJavaCallAdapterFactory provideRxJavaCallAdapterFactory() {
+    @Provides protected RxJavaCallAdapterFactory provideRxJavaCallAdapterFactory() {
         return RxJavaCallAdapterFactory.create();
     }
 
-    @Provides @Singleton Retrofit providesRetrofit(RxJavaCallAdapterFactory rxJavaCallAdapterFactory) {
+    @Provides @Singleton protected Retrofit providesRetrofit(RxJavaCallAdapterFactory rxJavaCallAdapterFactory) {
         OkHttpClient.Builder httpClient =
                 new OkHttpClient.Builder();
         httpClient.addInterceptor(new Interceptor() {
@@ -55,14 +55,12 @@ public class MovieDBServiceModule {
                 .build();
     }
 
-    @Provides @Singleton MovieDBApi providesMovieDBApi( Retrofit retrofit ) {
-
-
+    @Provides @Singleton protected MovieDBApi providesMovieDBApi( Retrofit retrofit ) {
 
         return retrofit.create( MovieDBApi.class );
     }
 
-    @Provides @Singleton MovieDBService provideMovieDBService( MovieDBApiService movieDBApiService ) {
+    @Provides @Singleton protected MovieDBService provideMovieDBService( MovieDBApiService movieDBApiService ) {
         return movieDBApiService;
     }
 }

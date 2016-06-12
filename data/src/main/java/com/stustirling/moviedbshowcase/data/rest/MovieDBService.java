@@ -12,5 +12,4 @@ import rx.Observable;
 public interface MovieDBService {
 
     Observable<List<MovieSummaryEntity>> getPopularMovies();
-
 }

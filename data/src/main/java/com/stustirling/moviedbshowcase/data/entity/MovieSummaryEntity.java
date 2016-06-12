@@ -7,8 +7,8 @@ import java.util.Date;
  */
 public class MovieSummaryEntity {
 
-    long id;
-    String title;
+    public long id;
+    public String title;
     String overview;
     float vote_average;
     Date release_date;

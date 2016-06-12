@@ -11,6 +11,5 @@ import rx.Observable;
  */
 public interface MovieDBRepository {
 
-    Observable<List<MovieSummary>> getPopularMovies(int amount);
-
+    Observable<List<MovieSummary>> getPopularMovies();
 }

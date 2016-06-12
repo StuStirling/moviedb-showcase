@@ -3,6 +3,7 @@ package com.stustirling.moviedbshowcase.data.rest;
 import com.stustirling.moviedbshowcase.data.entity.PopularMoviesResponse;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -14,6 +15,6 @@ public interface MovieDBApi {
     String BASE_URL = "http://api.themoviedb.org/3/";
 
     @GET("movie/popular")
-    Observable<PopularMoviesResponse> getPopularMovies();
+    Observable<PopularMoviesResponse> getPopularMovies(@Query("page") Integer page);
 
 }

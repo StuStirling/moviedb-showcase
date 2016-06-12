@@ -34,7 +34,7 @@ public class GetPopularMoviesTest {
     public void testGetPopularMoviesUseCaseHappyCase() {
         getTop20PopularMovies.buildUseCaseObservable();
 
-        verify(mockRepo,times(1)).getPopularMovies(20);
+        verify(mockRepo,times(1)).getPopularMovies();
         verifyNoMoreInteractions(mockRepo);
     }
 

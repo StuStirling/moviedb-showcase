@@ -30,9 +30,8 @@ public class MovieDBDataRepository implements MovieDBRepository {
     }
 
     @Override
-    public Observable<List<MovieSummary>> getPopularMovies(int amount) {
+    public Observable<List<MovieSummary>> getPopularMovies() {
         return movieDBService.getPopularMovies()
-                .take(amount)
                 .map(new Func1<List<MovieSummaryEntity>, List<MovieSummary>>() {
                     @Override
                     public List<MovieSummary> call(List<MovieSummaryEntity> movieSummaryEntities) {
