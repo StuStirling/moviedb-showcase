@@ -37,6 +37,7 @@ public class PopularMoviesFragmentTest extends BaseTest {
     private static final String INTERSTELLAR_TITLE = "Interstellar";
     private static final String INTERSTELLAR_OVERVIEW = "Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.";
     private static final float INTERSTELLAR_RATING = 8.2f;
+
     @Before
     public void setUp() {
         super.setUp();

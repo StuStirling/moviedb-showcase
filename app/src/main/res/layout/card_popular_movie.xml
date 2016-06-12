@@ -39,14 +39,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."
+                tools:text="Based upon Marvel Comics’ most unconventional anti-hero, DEADPOOL tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life."
                 android:id="@+id/tv_cvpm_overview"
-                android:padding="8dp"
-                android:lines="7"
+                android:lines="5"
                 android:textStyle="italic"
                 android:gravity="center_vertical"
                 android:textColor="@color/popularmovies.cardview.overview"
-                android:ellipsize="end" />
+                android:ellipsize="end"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

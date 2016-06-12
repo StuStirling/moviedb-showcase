@@ -13,6 +13,7 @@ public interface MovieDBApi {
 
     String apiKey = "0a08e38b874d0aa2d426ffc04357069d";
     String BASE_URL = "http://api.themoviedb.org/3/";
+    String BASE_IMG_PATH = "http://image.tmdb.org/t/p/";
 
     @GET("movie/popular")
     Observable<PopularMoviesResponse> getPopularMovies(@Query("page") Integer page);

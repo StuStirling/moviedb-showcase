@@ -48,6 +48,7 @@ public class MovieSummaryEntityDataMapperTest {
         assertEquals(release_date,movieSummary.getReleaseDate());
         assertEquals(poster_path,movieSummary.getPosterPath());
         assertEquals(vote_avg,movieSummary.getRating(),0.01f);
+        assertEquals(poster_path,movieSummary.getPosterPath());
     }
 
     @Test

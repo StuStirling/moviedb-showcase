@@ -1,12 +1,16 @@
 package com.stustirling.moviedbshowcase.popularmovies;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.stustirling.moviedbshowcase.R;
+import com.stustirling.moviedbshowcase.data.rest.MovieDBApi;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 
 import java.util.ArrayList;
@@ -28,6 +32,7 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         @BindView(R.id.tv_cvpm_overview) TextView overview;
         @BindView(R.id.tv_cvpm_rating) TextView rating;
         @BindView(R.id.tv_cvpm_year) TextView year;
+        @BindView(R.id.iv_cvpm_poster) ImageView poster;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +66,10 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         Calendar cal = Calendar.getInstance();
         cal.setTime(movie.getReleaseDate());
         holder.year.setText(String.format(Locale.getDefault(),"%d",cal.get(Calendar.YEAR)));
+
+        Picasso.with(holder.poster.getContext())
+                .load(Uri.parse(MovieDBApi.BASE_IMG_PATH+"/w342"+movie.getPosterPath()))
+                .into(holder.poster);
     }
 
     @Override
