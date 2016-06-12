@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import rx.Observable;
@@ -33,15 +34,23 @@ public class PopularMoviesFragmentTest extends BaseTest {
             true,
             false);
 
+    private static final String INTERSTELLAR_TITLE = "Interstellar";
+    private static final String INTERSTELLAR_OVERVIEW = "Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.";
+    private static final float INTERSTELLAR_RATING = 8.2f;
     @Before
     public void setUp() {
         super.setUp();
 
         List<MovieSummary> entities = new ArrayList<>();
-        MovieSummary zootopia = new MovieSummary();
-        zootopia.setId(231);
-        zootopia.setTitle("Interstellar");
-        entities.add(zootopia);
+        MovieSummary interstellar = new MovieSummary();
+        interstellar.setId(231);
+        interstellar.setTitle(INTERSTELLAR_TITLE);
+        interstellar.setOverview(INTERSTELLAR_OVERVIEW);
+        interstellar.setRating(INTERSTELLAR_RATING);
+        Calendar releaseDate = Calendar.getInstance();
+        releaseDate.set(2015,12,17);
+        interstellar.setReleaseDate(releaseDate.getTime());
+        entities.add(interstellar);
 
         when(mockRepo.getPopularMovies()).thenReturn(Observable.just(entities));
     }
@@ -52,7 +61,10 @@ public class PopularMoviesFragmentTest extends BaseTest {
 
         onView(withId(R.id.rv_pmf_movies)).check(matches(isDisplayed()));
 
-        onView(withText("Interstellar")).check(matches(isDisplayed()));
+        onView(withText(INTERSTELLAR_TITLE)).check(matches(isDisplayed()));
+        onView(withText(INTERSTELLAR_OVERVIEW)).check(matches(isDisplayed()));
+        onView(withText(Float.valueOf(INTERSTELLAR_RATING).toString())).check(matches(isDisplayed()));
+
 //        onView(withText("Star Wars: The Force Awakens")).check(matches(isDisplayed()));
     }
 

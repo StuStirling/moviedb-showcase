@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="popularmovies.cardview.title">#000000</color>
+    <color name="popularmovies.cardview.overview">#707070</color>
+    <color name="popularmovies.cardview.footer">#202020</color>
+    <color name="popularmovies.cardview.more">#414141</color>
 </resources>

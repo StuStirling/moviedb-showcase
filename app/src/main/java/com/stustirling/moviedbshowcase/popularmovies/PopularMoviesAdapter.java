@@ -10,7 +10,9 @@ import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +25,9 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_cvpm_title) TextView title;
+        @BindView(R.id.tv_cvpm_overview) TextView overview;
+        @BindView(R.id.tv_cvpm_rating) TextView rating;
+        @BindView(R.id.tv_cvpm_year) TextView year;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -51,6 +56,11 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
     public void onBindViewHolder(ViewHolder holder, int position) {
         MovieSummary movie = popularMovies.get(position);
         holder.title.setText(movie.getTitle());
+        holder.overview.setText(movie.getOverview());
+        holder.rating.setText(String.format(Locale.getDefault(),"%.1f",movie.getRating()));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(movie.getReleaseDate());
+        holder.year.setText(String.format(Locale.getDefault(),"%d",cal.get(Calendar.YEAR)));
     }
 
     @Override

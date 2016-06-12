@@ -9,4 +9,7 @@
     <string name="tab1.title" translatable="false">@string/movies</string>
     <string name="tab2.title" translatable="false">@string/tv_shows</string>
     <string name="tab3.title" translatable="false">@string/people</string>
+
+    <string name="popularmovies.cardview.more">more…</string>
+
 </resources>
