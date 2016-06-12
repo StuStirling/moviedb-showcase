@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase.data;
 
+import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.PopularMoviesResponse;
 import com.stustirling.moviedbshowcase.data.rest.MovieDBApi;
@@ -29,23 +30,17 @@ public class MovieDBApiServiceTest {
 
     @Mock MovieDBApi mockApi;
 
-    MovieSummaryEntity zootopia;
-    MovieSummaryEntity deadpool;
-    MovieSummaryEntity xmen;
-
+    MovieDBApiService apiService;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-
-        zootopia = new MovieSummaryEntity();
-        deadpool = new MovieSummaryEntity();
-        xmen = new MovieSummaryEntity();
+        apiService = new MovieDBApiService(mockApi);
     }
 
     @Test
     public void testPopularMoviesRetrievalConcatenation() {
-        MovieDBApiService apiService = new MovieDBApiService(mockApi);
+        MovieSummaryEntity zootopia = new MovieSummaryEntity();
 
         PopularMoviesResponse responseOne = new PopularMoviesResponse();
         responseOne.results = new ArrayList<>();
@@ -62,6 +57,23 @@ public class MovieDBApiServiceTest {
         assertEquals(zootopia,zootopiaContainer.get(0));
 
         verify(mockApi,times(1)).getPopularMovies(anyInt());
+    }
+
+    @Test
+    public void shouldReturnMovieDetails() {
+        MovieDBApiService apiService = new MovieDBApiService(mockApi);
+
+        MovieDetailsEntity waterworld = new MovieDetailsEntity();
+        when(mockApi.getMovieDetails(9804)).thenReturn(Observable.just(waterworld));
+
+        TestSubscriber<MovieDetailsEntity> testSubscriber = new TestSubscriber<>();
+        apiService.getMovieDetails(9804).subscribe(testSubscriber);
+
+        testSubscriber.assertNoErrors();
+        List<MovieDetailsEntity> movieDetails = testSubscriber.getOnNextEvents();
+        assertEquals(1,movieDetails.size());
+        assertEquals(waterworld,movieDetails.get(0));
+        verify(mockApi,times(1)).getMovieDetails(anyInt());
     }
 
 }

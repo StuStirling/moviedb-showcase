@@ -2,6 +2,8 @@ package com.stustirling.moviedbshowcase.popularmovies;
 
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularMovies;
+import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
+import com.stustirling.moviedbshowcase.model.mapper.MovieSummaryModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +18,15 @@ import rx.Subscriber;
 public class PopularMoviesPresenter {
 
     private final GetTop20PopularMovies getPopularMoviesUseCase;
+    private final MovieSummaryModelMapper movieSummaryMapper;
     private PopularMoviesView popularMoviesView;
     private List<MovieSummary> movieSummaries;
 
     @Inject
-    public PopularMoviesPresenter(GetTop20PopularMovies useCase) {
+    public PopularMoviesPresenter(GetTop20PopularMovies useCase, MovieSummaryModelMapper mapper ) {
         super();
         this.getPopularMoviesUseCase = useCase;
+        this.movieSummaryMapper = mapper;
     }
 
     public void init( PopularMoviesView popularMoviesView ) {
@@ -35,9 +39,8 @@ public class PopularMoviesPresenter {
     Subscriber<List<MovieSummary>> subscriber = new Subscriber<List<MovieSummary>>() {
         @Override
         public void onCompleted() {
-            popularMoviesView.refreshMovieSummaries(movieSummaries);
+            popularMoviesView.refreshMovieSummaries(movieSummaryMapper.transform(movieSummaries));
             popularMoviesView.loading(false);
-
         }
 
         @Override
@@ -50,5 +53,10 @@ public class PopularMoviesPresenter {
             PopularMoviesPresenter.this.movieSummaries.addAll(movieSummaries);
         }
     };
+
+    public interface PopularMoviesView {
+        void loading(boolean loading);
+        void refreshMovieSummaries(List<MovieSummaryModel> movieSummaries);
+    }
 
 }

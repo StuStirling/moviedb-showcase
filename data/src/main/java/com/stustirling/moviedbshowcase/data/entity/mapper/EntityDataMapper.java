@@ -1,5 +1,7 @@
 package com.stustirling.moviedbshowcase.data.entity.mapper;
 
+import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
 
@@ -20,5 +22,9 @@ public class EntityDataMapper {
 
     public List<MovieSummary> transform(List<MovieSummaryEntity> movieSummaryEntities) {
         return MovieSummaryEntityDataMapper.transform(movieSummaryEntities);
+    }
+
+    public MovieDetails transform(MovieDetailsEntity movieDetailsEntity) {
+        return MovieDetailsEntityDataMapper.transform(movieDetailsEntity);
     }
 }

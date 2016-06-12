@@ -1,7 +1,9 @@
 package com.stustirling.moviedbshowcase.data.rest;
 
+import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.domain.MovieDetails;
 
 import java.util.List;
 
@@ -31,5 +33,10 @@ public class MovieDBApiService implements MovieDBService {
                         return popularMoviesResponse.results;
                     }
                 });
+    }
+
+    @Override
+    public Observable<MovieDetailsEntity> getMovieDetails(int id) {
+        return movieDBApi.getMovieDetails(id);
     }
 }

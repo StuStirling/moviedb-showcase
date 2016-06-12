@@ -1,8 +1,10 @@
 package com.stustirling.moviedbshowcase.data.rest;
 
+import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.PopularMoviesResponse;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -18,4 +20,6 @@ public interface MovieDBApi {
     @GET("movie/popular")
     Observable<PopularMoviesResponse> getPopularMovies(@Query("page") Integer page);
 
+    @GET("movie/{id}")
+    Observable<MovieDetailsEntity> getMovieDetails(@Path("id") int id);
 }

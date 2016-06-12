@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.data;
+package com.stustirling.moviedbshowcase.data.mappers;
 
 import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.mapper.MovieSummaryEntityDataMapper;

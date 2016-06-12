@@ -51,40 +51,18 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iv_cvpm_rating"
-                    android:layout_alignParentRight="false"
-                    android:layout_alignParentEnd="false"
-                    android:src="@drawable/ic_grade"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:tint="#f2d70b"
-                    android:layout_marginLeft="8dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="7.6"
-                    android:id="@+id/tv_cvpm_rating"
-                    android:textColor="@color/popularmovies.cardview.footer"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_cvpm_rating"
-                    android:layout_toEndOf="@+id/iv_cvpm_rating" />
+                android:layout_height="match_parent"
+                android:paddingBottom="6dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp">
+                    android:layout_marginRight="12dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -107,6 +85,41 @@
                         android:layout_toRightOf="@+id/iv_cvpm_rating"
                         android:layout_toEndOf="@+id/iv_cvpm_rating" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentBottom="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/iv_cvpm_rating"
+                        android:layout_alignParentRight="false"
+                        android:layout_alignParentEnd="false"
+                        android:src="@drawable/ic_grade"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:tint="#f2d70b"
+                        android:layout_marginLeft="8dp"
+                        android:layout_centerInParent="true" />
+
+                    <TextView
+                        tools:text="7.6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_cvpm_rating"
+                        android:textColor="@color/popularmovies.cardview.footer"
+                        android:layout_toRightOf="@+id/iv_cvpm_rating"
+                        android:layout_toEndOf="@+id/iv_cvpm_rating"
+                        android:layout_centerInParent="true" />
                 </LinearLayout>
 
                 <!--<TextView

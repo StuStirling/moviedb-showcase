@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase.domain.repository;
 
+import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 
 import java.util.List;
@@ -12,4 +13,5 @@ import rx.Observable;
 public interface MovieDBRepository {
 
     Observable<List<MovieSummary>> getPopularMovies();
+    Observable<MovieDetails> getMovieDetails(int id);
 }

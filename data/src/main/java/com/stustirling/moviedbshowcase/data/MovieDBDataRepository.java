@@ -1,5 +1,7 @@
 package com.stustirling.moviedbshowcase.data;
 
+import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.mapper.EntityDataMapper;
@@ -36,6 +38,18 @@ public class MovieDBDataRepository implements MovieDBRepository {
                     @Override
                     public List<MovieSummary> call(List<MovieSummaryEntity> movieSummaryEntities) {
                         return entityMapper.transform(movieSummaryEntities);
+                    }
+                });
+    }
+
+    @Override
+    public Observable<MovieDetails> getMovieDetails(int id) {
+        return movieDBService.getMovieDetails(id)
+                .map(new Func1<MovieDetailsEntity, MovieDetails>() {
+                    @Override
+                    public MovieDetails call(MovieDetailsEntity movieDetailsEntity) {
+                        return entityMapper.transform(
+                                movieDetailsEntity);
                     }
                 });
     }

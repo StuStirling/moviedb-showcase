@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.stustirling.moviedbshowcase.R;
-import com.stustirling.moviedbshowcase.data.rest.MovieDBApi;
-import com.stustirling.moviedbshowcase.domain.MovieSummary;
+import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +25,8 @@ import butterknife.ButterKnife;
  */
 public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdapter.ViewHolder> {
 
+    private MovieSummaryClickListener clickListener;
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_cvpm_title) TextView title;
@@ -37,17 +38,24 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.movieSummarySelected( popularMovies.get(getAdapterPosition()) );
+                }
+            });
         }
     }
 
-    private List<MovieSummary> popularMovies;
+    private List<MovieSummaryModel> popularMovies;
 
-    public PopularMoviesAdapter() {
+    public PopularMoviesAdapter(MovieSummaryClickListener clickListener ) {
         super();
         this.popularMovies = new ArrayList<>();
+        this.clickListener = clickListener;
     }
 
-    public void updatePopularMovies(List<MovieSummary> popularMovies ) {
+    public void updatePopularMovies(List<MovieSummaryModel> popularMovies ) {
         this.popularMovies = popularMovies;
         this.notifyDataSetChanged();
     }
@@ -59,7 +67,7 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        MovieSummary movie = popularMovies.get(position);
+        MovieSummaryModel movie = popularMovies.get(position);
         holder.title.setText(movie.getTitle());
         holder.overview.setText(movie.getOverview());
         holder.rating.setText(String.format(Locale.getDefault(),"%.1f",movie.getRating()));
@@ -67,9 +75,11 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         cal.setTime(movie.getReleaseDate());
         holder.year.setText(String.format(Locale.getDefault(),"%d",cal.get(Calendar.YEAR)));
 
-        Picasso.with(holder.poster.getContext())
-                .load(Uri.parse(MovieDBApi.BASE_IMG_PATH+"/w342"+movie.getPosterPath()))
-                .into(holder.poster);
+        if ( movie.getPosterPath() != null ) {
+            Picasso.with(holder.poster.getContext())
+                    .load(Uri.parse(movie.getPosterPath()))
+                    .into(holder.poster);
+        }
     }
 
     @Override
@@ -77,6 +87,10 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_popular_movie,parent,false);
         return new ViewHolder(itemView);
+    }
+
+    interface MovieSummaryClickListener {
+        void movieSummarySelected(MovieSummaryModel movieSummaryModel);
     }
 
 }

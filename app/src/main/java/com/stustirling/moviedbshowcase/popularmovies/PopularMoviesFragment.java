@@ -13,8 +13,9 @@ import android.view.ViewGroup;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
 import com.stustirling.moviedbshowcase.R;
-import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
+import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
+import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsActivity;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularMoviesFragment extends BaseFragment implements PopularMoviesView {
+public class PopularMoviesFragment extends BaseFragment implements PopularMoviesPresenter.PopularMoviesView,PopularMoviesAdapter.MovieSummaryClickListener {
 
     private Unbinder unbinder;
     @BindView(R.id.rv_pmf_movies) RecyclerView recyclerView;
@@ -50,7 +51,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
     }
 
     private void setupUI() {
-        adapter = new PopularMoviesAdapter();
+        adapter = new PopularMoviesAdapter(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -69,7 +70,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
     }
 
     @Override
-    public void refreshMovieSummaries(List<MovieSummary> movieSummaries) {
+    public void refreshMovieSummaries(List<MovieSummaryModel> movieSummaries) {
         adapter.updatePopularMovies(movieSummaries);
     }
 
@@ -82,6 +83,11 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
     @Override
     public void loading(boolean loading) {
 
+    }
+
+    @Override
+    public void movieSummarySelected(MovieSummaryModel movieSummaryModel) {
+        startActivity(MovieDetailsActivity.launchIntent(getContext(),movieSummaryModel));
     }
 
 
