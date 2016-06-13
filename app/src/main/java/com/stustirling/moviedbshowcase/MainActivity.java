@@ -65,11 +65,13 @@ public class MainActivity extends BaseActivity implements HasComponent<MovieDBCo
         initInjector();
     }
 
-    private void initActivity(Bundle savedInstanceState) {
+    @Override
+    protected void initActivity(Bundle savedInstanceState) {
 
     }
 
-    private void initInjector() {
+    @Override
+    protected void initInjector() {
         movieDBComponent = DaggerMovieDBComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())

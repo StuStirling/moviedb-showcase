@@ -16,13 +16,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getApplicationComponent().inject(this);
-        init();
+        initInjector();
+        initActivity(savedInstanceState);
     }
 
-    protected void init() {
 
-    }
-
+    protected abstract void initInjector();
+    protected abstract void initActivity(Bundle savedInstanceState);
 
     public ApplicationComponent getApplicationComponent() {
         return ((AndroidApplication) getApplication()).getApplicationComponent();

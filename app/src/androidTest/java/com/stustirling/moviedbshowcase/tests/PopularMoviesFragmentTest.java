@@ -9,7 +9,6 @@ import com.stustirling.moviedbshowcase.BaseTest;
 import com.stustirling.moviedbshowcase.MainActivity;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
-import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -84,7 +83,7 @@ public class PopularMoviesFragmentTest extends BaseTest {
         onView(withId(R.id.rv_pmf_movies))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
 
-        onView(withId(R.id.sv_mda_container)).check(matches(isDisplayed()));
+        onView(withId(R.id.ll_mda_container)).check(matches(isDisplayed()));
 
         onView(withText(INTERSTELLAR_TITLE)).check(matches(isDisplayed()));
         onView(withText(INTERSTELLAR_OVERVIEW)).check(matches(isDisplayed()));

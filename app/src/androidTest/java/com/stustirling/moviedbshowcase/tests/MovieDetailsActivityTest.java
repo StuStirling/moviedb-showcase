@@ -72,7 +72,7 @@ public class MovieDetailsActivityTest extends BaseTest {
         Intent intent = MovieDetailsActivity.launchIntent(context,madMax);
         activityRule.launchActivity(intent);
 
-        onView(withId(R.id.sv_mda_container)).check(matches(isDisplayed()));
+        onView(withId(R.id.ll_mda_container)).check(matches(isDisplayed()));
 
         onView(withText(MMFR_TITLE)).check(matches(isDisplayed()));
         onView(withText(MMFR_OVERVIEW)).check(matches(isDisplayed()));
