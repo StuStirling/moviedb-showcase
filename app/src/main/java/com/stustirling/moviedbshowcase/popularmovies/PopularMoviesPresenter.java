@@ -1,5 +1,7 @@
 package com.stustirling.moviedbshowcase.popularmovies;
 
+import android.util.Log;
+
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularMovies;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
@@ -45,7 +47,7 @@ public class PopularMoviesPresenter {
 
         @Override
         public void onError(Throwable e) {
-
+            Log.e("PMP",e.getMessage());
         }
 
         @Override

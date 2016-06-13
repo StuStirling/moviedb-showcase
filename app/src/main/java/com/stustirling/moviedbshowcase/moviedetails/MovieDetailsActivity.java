@@ -2,10 +2,13 @@ package com.stustirling.moviedbshowcase.moviedetails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.stustirling.moviedbshowcase.BaseActivity;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
@@ -21,10 +24,11 @@ public class MovieDetailsActivity extends BaseActivity {
 
     private MovieSummaryModel movie;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.tb_mda_toolbar) Toolbar toolbar;
     @BindView(R.id.tv_mda_title) TextView title;
     @BindView(R.id.tv_mda_overview) TextView overview;
     @BindView(R.id.tv_mda_rating) TextView rating;
+    @BindView(R.id.iv_mda_backdrop) ImageView backdrop;
 
     public static Intent launchIntent(Context context, MovieSummaryModel movieSummaryModel) {
         if ( movieSummaryModel == null )
@@ -54,6 +58,13 @@ public class MovieDetailsActivity extends BaseActivity {
         title.setText(movie.getTitle());
         overview.setText(movie.getOverview());
         rating.setText(String.format(Locale.getDefault(),"%.1f",movie.getRating()));
+
+        getSupportActionBar().setTitle(movie.getTitle());
+
+        Picasso.with(this)
+                .load(Uri.parse("http://image.tmdb.org/t/p//w780/hNFMawyNDWZKKHU4GYCBz1krsRM.jpg"))
+                .into(backdrop);
+
     }
 
     @Override
