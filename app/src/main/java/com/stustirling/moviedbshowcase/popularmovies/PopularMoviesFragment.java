@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +40,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     private Unbinder unbinder;
     @BindView(R.id.rv_pmf_movies) RecyclerView recyclerView;
+    @BindView(R.id.srl_pmf_refresh) SwipeRefreshLayout refreshLayout;
 
     private PopularMoviesAdapter adapter;
 
@@ -58,12 +60,29 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
         return v;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if ( refreshLayout.isRefreshing() )
+            animateSwipeRefresh(false);
+    }
+
     private void setupUI() {
+        refreshLayout.setEnabled(false);
         adapter = new PopularMoviesAdapter(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+    }
+
+    private void animateSwipeRefresh(final boolean animate) {
+        refreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(animate);
+            }
+        });
     }
 
     @Override
@@ -90,7 +109,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     @Override
     public void loading(boolean loading) {
-
+        animateSwipeRefresh(loading);
     }
 
     @Override

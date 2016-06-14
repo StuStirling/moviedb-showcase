@@ -33,7 +33,7 @@ public class PopularMoviesPresenter {
 
     public void init( PopularMoviesView popularMoviesView ) {
         this.popularMoviesView = popularMoviesView;
-        popularMoviesView.loading(true);
+        this.popularMoviesView.loading(true);
         this.movieSummaries = new ArrayList<>();
         getPopularMoviesUseCase.execute(subscriber);
     }
