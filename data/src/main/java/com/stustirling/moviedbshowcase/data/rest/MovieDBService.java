@@ -1,7 +1,8 @@
 package com.stustirling.moviedbshowcase.data.rest;
 
-import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
-import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface MovieDBService {
     Observable<List<MovieSummaryEntity>> getPopularMovies();
 
     Observable<MovieDetailsEntity> getMovieDetails(int id);
+
+    Observable<List<TVShowEntity>> getPopularTVShows();
 }

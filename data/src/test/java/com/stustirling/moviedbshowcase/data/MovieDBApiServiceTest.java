@@ -1,8 +1,10 @@
 package com.stustirling.moviedbshowcase.data;
 
-import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
-import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
-import com.stustirling.moviedbshowcase.data.entity.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.data.entity.tvshows.PopularTVShowsResponse;
+import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 import com.stustirling.moviedbshowcase.data.rest.MovieDBApi;
 import com.stustirling.moviedbshowcase.data.rest.MovieDBApiService;
 
@@ -74,6 +76,29 @@ public class MovieDBApiServiceTest {
         assertEquals(1,movieDetails.size());
         assertEquals(waterworld,movieDetails.get(0));
         verify(mockApi,times(1)).getMovieDetails(anyInt());
+    }
+
+    @Test
+    public void shouldReturnTVShows() {
+        TVShowEntity tvshow = new TVShowEntity();
+
+        PopularTVShowsResponse responseOne = new PopularTVShowsResponse();
+        responseOne.results = new ArrayList<>();
+        responseOne.results.add(tvshow);
+        when(mockApi.getPopularTVShows()).thenReturn(Observable.just(responseOne));
+
+        TestSubscriber<List<TVShowEntity>> testSubscriber = new TestSubscriber<>();
+        apiService.getPopularTVShows().subscribe(testSubscriber);
+
+        testSubscriber.assertNoErrors();
+        List<List<TVShowEntity>> entityLists = testSubscriber.getOnNextEvents();
+        assertEquals(1,entityLists.size());
+        List<TVShowEntity> tvshowContainer = entityLists.get(0);
+        assertEquals(1,tvshowContainer.size());
+        assertEquals(tvshow,tvshowContainer.get(0));
+
+        verify(mockApi,times(1)).getPopularTVShows();
+
     }
 
 }

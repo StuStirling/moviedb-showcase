@@ -1,10 +1,12 @@
 package com.stustirling.moviedbshowcase.data;
 
-import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
-import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.mapper.EntityDataMapper;
+import com.stustirling.moviedbshowcase.domain.TVShow;
 import com.stustirling.moviedbshowcase.domain.repository.MovieDBRepository;
 import com.stustirling.moviedbshowcase.data.rest.MovieDBService;
 
@@ -37,7 +39,7 @@ public class MovieDBDataRepository implements MovieDBRepository {
                 .map(new Func1<List<MovieSummaryEntity>, List<MovieSummary>>() {
                     @Override
                     public List<MovieSummary> call(List<MovieSummaryEntity> movieSummaryEntities) {
-                        return entityMapper.transform(movieSummaryEntities);
+                        return entityMapper.transformMovieSummaries(movieSummaryEntities);
                     }
                 });
     }
@@ -48,8 +50,19 @@ public class MovieDBDataRepository implements MovieDBRepository {
                 .map(new Func1<MovieDetailsEntity, MovieDetails>() {
                     @Override
                     public MovieDetails call(MovieDetailsEntity movieDetailsEntity) {
-                        return entityMapper.transform(
+                        return entityMapper.transformMovieDetails(
                                 movieDetailsEntity);
+                    }
+                });
+    }
+
+    @Override
+    public Observable<List<TVShow>> getPopularTVShows() {
+        return movieDBService.getPopularTVShows()
+                .map(new Func1<List<TVShowEntity>, List<TVShow>>() {
+                    @Override
+                    public List<TVShow> call(List<TVShowEntity> tvShowEntities) {
+                        return entityMapper.transformTVShows(tvShowEntities);
                     }
                 });
     }

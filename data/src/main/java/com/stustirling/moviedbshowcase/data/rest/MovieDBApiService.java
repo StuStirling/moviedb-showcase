@@ -1,9 +1,10 @@
 package com.stustirling.moviedbshowcase.data.rest;
 
-import com.stustirling.moviedbshowcase.data.entity.MovieDetailsEntity;
-import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
-import com.stustirling.moviedbshowcase.data.entity.PopularMoviesResponse;
-import com.stustirling.moviedbshowcase.domain.MovieDetails;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.data.entity.tvshows.PopularTVShowsResponse;
+import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 
 import java.util.List;
 
@@ -38,5 +39,16 @@ public class MovieDBApiService implements MovieDBService {
     @Override
     public Observable<MovieDetailsEntity> getMovieDetails(int id) {
         return movieDBApi.getMovieDetails(id);
+    }
+
+    @Override
+    public Observable<List<TVShowEntity>> getPopularTVShows() {
+        return movieDBApi.getPopularTVShows()
+                .map(new Func1<PopularTVShowsResponse, List<TVShowEntity>>() {
+                    @Override
+                    public List<TVShowEntity> call(PopularTVShowsResponse popularTVShowsResponse) {
+                        return popularTVShowsResponse.getTVShows();
+                    }
+                });
     }
 }

@@ -1,7 +1,7 @@
 package com.stustirling.moviedbshowcase.data.entity.mapper;
 
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
-import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
 
 import java.util.ArrayList;
 import java.util.List;

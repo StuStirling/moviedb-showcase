@@ -1,6 +1,6 @@
 package com.stustirling.moviedbshowcase.data.mappers;
 
-import com.stustirling.moviedbshowcase.data.entity.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.mapper.MovieSummaryEntityDataMapper;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 

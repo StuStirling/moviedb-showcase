@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.data.entity;
+package com.stustirling.moviedbshowcase.data.entity.movies;
 
 import java.util.Date;
 
