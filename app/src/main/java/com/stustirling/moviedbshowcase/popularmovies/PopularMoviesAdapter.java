@@ -41,7 +41,7 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickListener.movieSummarySelected( popularMovies.get(getAdapterPosition()) );
+                    clickListener.movieSummarySelected( popularMovies.get(getAdapterPosition()),poster,overview,rating);
                 }
             });
         }
@@ -90,7 +90,7 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
     }
 
     interface MovieSummaryClickListener {
-        void movieSummarySelected(MovieSummaryModel movieSummaryModel);
+        void movieSummarySelected(MovieSummaryModel movieSummaryModel,ImageView poster,TextView overview,TextView rating);
     }
 
 }

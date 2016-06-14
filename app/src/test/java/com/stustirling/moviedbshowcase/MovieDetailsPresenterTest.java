@@ -1,6 +1,7 @@
 package com.stustirling.moviedbshowcase;
 
 import com.stustirling.moviedbshowcase.domain.interactor.GetMovieDetails;
+import com.stustirling.moviedbshowcase.model.mapper.MovieDetailsModelMapper;
 import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsPresenter;
 
 import org.junit.Before;
@@ -26,6 +27,7 @@ public class MovieDetailsPresenterTest {
     MovieDetailsPresenter.MovieDetailsView mockedView;
     @Mock GetMovieDetails mockedUseCase;
 
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -33,7 +35,7 @@ public class MovieDetailsPresenterTest {
 
     @Test
     public void testInitialisation() {
-        MovieDetailsPresenter presenter = new MovieDetailsPresenter(mockedUseCase);
+        MovieDetailsPresenter presenter = new MovieDetailsPresenter(mockedUseCase, new MovieDetailsModelMapper());
         presenter.init(mockedView);
 
         verify(mockedView,times(1)).loading(true);

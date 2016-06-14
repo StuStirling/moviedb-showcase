@@ -7,4 +7,5 @@
     <color name="popularmovies.cardview.overview">#707070</color>
     <color name="popularmovies.cardview.footer">#202020</color>
     <color name="popularmovies.cardview.more">#414141</color>
+    <color name="rating">#f2d70b</color>
 </resources>

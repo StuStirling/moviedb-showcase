@@ -1,11 +1,11 @@
-package com.stustirling.moviedbshowcase.domain;
+package com.stustirling.moviedbshowcase.model;
 
 import java.util.Date;
 
 /**
  * Created by Stu Stirling on 12/06/16.
  */
-public class MovieDetails {
+public class MovieDetailsModel {
 
     int id;
     String imdbId;
@@ -124,4 +124,6 @@ public class MovieDetails {
     public void setRevenue(int revenue) {
         this.revenue = revenue;
     }
+
+
 }

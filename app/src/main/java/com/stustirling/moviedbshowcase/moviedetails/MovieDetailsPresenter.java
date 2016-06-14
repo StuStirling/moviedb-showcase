@@ -2,6 +2,8 @@ package com.stustirling.moviedbshowcase.moviedetails;
 
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.interactor.GetMovieDetails;
+import com.stustirling.moviedbshowcase.model.MovieDetailsModel;
+import com.stustirling.moviedbshowcase.model.mapper.MovieDetailsModelMapper;
 
 import javax.inject.Inject;
 
@@ -13,12 +15,14 @@ import rx.Subscriber;
 public class MovieDetailsPresenter {
 
     private final GetMovieDetails getMovieDetails;
+    private final MovieDetailsModelMapper mapper;
     private MovieDetailsView movieDetailsView;
     private MovieDetails movieDetails;
 
     @Inject
-    public MovieDetailsPresenter( GetMovieDetails getMovieDetails ) {
+    public MovieDetailsPresenter(GetMovieDetails getMovieDetails, MovieDetailsModelMapper mapper) {
         this.getMovieDetails = getMovieDetails;
+        this.mapper = mapper;
     }
 
     public void init( MovieDetailsView movieDetailsView ) {
@@ -32,7 +36,7 @@ public class MovieDetailsPresenter {
 
         @Override
         public void onCompleted() {
-            movieDetailsView.displayMovieDetails(movieDetails);
+            movieDetailsView.displayMovieDetails(mapper.transform(movieDetails));
             movieDetailsView.loading(false);
         }
 
@@ -49,6 +53,6 @@ public class MovieDetailsPresenter {
 
     public interface MovieDetailsView {
         void loading( boolean loading );
-        void displayMovieDetails(MovieDetails movieDetails);
+        void displayMovieDetails(MovieDetailsModel movieDetails);
     }
 }

@@ -11,5 +11,13 @@
     <string name="tab3.title" translatable="false">@string/people</string>
 
     <string name="popularmovies.cardview.more">more…</string>
+    <string name="budget">Budget</string>
+    <string name="revenue">Revenue</string>
+    <string name="visit_homepage">Visit Homepage</string>
+    <string name="visit_imdb">Visit IMDB</string>
+    <string name="vote_count_format">(%1$d votes)</string>
+    <string name="runtime">Runtime</string>
+    <string name="runtime_format">%1$d minutes</string>
+    <string name="released">Released</string>
 
 </resources>

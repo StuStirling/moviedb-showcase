@@ -28,7 +28,7 @@ public class MovieSummaryEntityDataMapperTest {
     @Test
     public void testMovieSummaryMapping() {
         MovieSummaryEntity mockEntity = mock(MovieSummaryEntity.class);
-        long id = 213123;
+        int id = 213123;
         String title = "Test entity";
         String overview = "A nice test entity";
         float vote_avg = 9.9f;
@@ -54,10 +54,10 @@ public class MovieSummaryEntityDataMapperTest {
     @Test
     public void testMultipleMovieSummaryMappings() {
         MovieSummaryEntity firstMock = mock(MovieSummaryEntity.class);
-        long firstID = 1232523;
+        int firstID = 1232523;
         when(firstMock.getId()).thenReturn(firstID);
         MovieSummaryEntity secondMock = mock(MovieSummaryEntity.class);
-        long secondID = 981732;
+        int secondID = 981732;
         when(secondMock.getId()).thenReturn(secondID);
         List<MovieSummaryEntity> entities = new ArrayList<>();
         entities.add(firstMock);

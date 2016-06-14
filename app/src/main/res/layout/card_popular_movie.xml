@@ -16,7 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iv_cvpm_poster"
-            android:src="@mipmap/poster_placeholder" />
+            android:src="@mipmap/poster_placeholder"
+            android:transitionName="popular_movie" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -47,7 +48,8 @@
                 android:textColor="@color/popularmovies.cardview.overview"
                 android:ellipsize="end"
                 android:paddingLeft="8dp"
-                android:paddingRight="8dp" />
+                android:paddingRight="8dp"
+                android:transitionName="details_overview"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -107,7 +109,7 @@
                         android:src="@drawable/ic_grade"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:tint="#f2d70b"
+                        android:tint="@color/rating"
                         android:layout_marginLeft="8dp"
                         android:layout_centerInParent="true" />
 
@@ -119,7 +121,8 @@
                         android:textColor="@color/popularmovies.cardview.footer"
                         android:layout_toRightOf="@+id/iv_cvpm_rating"
                         android:layout_toEndOf="@+id/iv_cvpm_rating"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerInParent="true"
+                        android:transitionName="details_rating"/>
                 </LinearLayout>
 
                 <!--<TextView

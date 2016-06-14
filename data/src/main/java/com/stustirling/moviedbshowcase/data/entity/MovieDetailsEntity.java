@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class MovieDetailsEntity {
 
-    long id;
+    int id;
     String imdb_id;
     String original_title;
     String overview;
@@ -21,7 +21,7 @@ public class MovieDetailsEntity {
     int budget;
     int revenue;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

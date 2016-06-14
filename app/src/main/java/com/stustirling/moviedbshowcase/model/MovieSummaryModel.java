@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class MovieSummaryModel implements Parcelable {
 
-    private long id;
+    private int id;
     private String title;
     private String posterPath;
     private String overview;
@@ -20,11 +20,11 @@ public class MovieSummaryModel implements Parcelable {
     public MovieSummaryModel() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -89,7 +89,7 @@ public class MovieSummaryModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(this.id);
+        dest.writeInt(this.id);
         dest.writeString(this.title);
         dest.writeString(this.posterPath);
         dest.writeString(this.overview);
@@ -98,7 +98,7 @@ public class MovieSummaryModel implements Parcelable {
     }
 
     protected MovieSummaryModel(Parcel in) {
-        this.id = in.readLong();
+        this.id = in.readInt();
         this.title = in.readString();
         this.posterPath = in.readString();
         this.overview = in.readString();

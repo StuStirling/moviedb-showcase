@@ -1,15 +1,22 @@
 package com.stustirling.moviedbshowcase.popularmovies;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
 import com.stustirling.moviedbshowcase.R;
@@ -37,6 +44,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     @Inject
     PopularMoviesPresenter presenter;
+    @Inject Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,8 +94,18 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
     }
 
     @Override
-    public void movieSummarySelected(MovieSummaryModel movieSummaryModel) {
-        startActivity(MovieDetailsActivity.launchIntent(getContext(),movieSummaryModel));
+    public void movieSummarySelected(MovieSummaryModel movieSummaryModel, ImageView poster, TextView overview,TextView rating) {
+        Intent intent = MovieDetailsActivity.launchIntent(getContext(),movieSummaryModel);
+
+        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
+            Pair<View,String> pair1 = Pair.create((View)poster,poster.getTransitionName());
+            Pair<View,String> pair2 = Pair.create((View)overview,overview.getTransitionName());
+//            Pair<View,String> pair3 = Pair.create((View)rating,rating.getTransitionName());
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair1,pair2);
+            startActivity(intent,options.toBundle());
+        } else {
+            startActivity(intent);
+        }
     }
 
 

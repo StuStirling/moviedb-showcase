@@ -7,14 +7,14 @@ import java.util.Date;
  */
 public class MovieSummaryEntity {
 
-    public long id;
+    public int id;
     public String title;
     String overview;
     float vote_average;
     Date release_date;
     String poster_path;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

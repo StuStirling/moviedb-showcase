@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class MovieSummary {
 
-    private long id;
+    private int id;
     private String title;
     private String overview;
     private float rating;
@@ -15,11 +15,11 @@ public class MovieSummary {
     private String posterPath;
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

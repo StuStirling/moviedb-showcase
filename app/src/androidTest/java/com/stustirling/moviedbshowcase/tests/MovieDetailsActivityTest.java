@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.stustirling.moviedbshowcase.BaseTest;
 import com.stustirling.moviedbshowcase.R;
+import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsActivity;
 
@@ -15,8 +16,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+
+import rx.Observable;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -25,6 +28,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Stu Stirling on 12/06/16.
@@ -43,7 +47,18 @@ public class MovieDetailsActivityTest extends BaseTest {
     private static final float MMFR_VOTE_AVG = 7.3f;
     private static final Date MMFR_RELEASE_DATE = new Date();
     private static final String MMFR_POSTER_PATH = "/kqjL17yufvn9OVLyXYpvtyrFfak.jpg";
+
+    private static final int MMFR_REVENUE = 378436354;
+    private static final String MMFR_IMDB_ID = "tt1392190";
+    private static final int MMFR_BUDGET = 150000000;
+    private static final String MMFR_HOMEPAGE = "http://www.madmaxmovie.com/";
+    private static final int MMFR_RUNTIME = 120;
+    private static final int MMFR_VOTE_COUNT = 4705;
+
+
     private MovieSummaryModel madMax;
+
+    private MovieDetails madMaxDetails;
 
     @Before
     public void setUp() {
@@ -56,6 +71,18 @@ public class MovieDetailsActivityTest extends BaseTest {
         madMax.setRating(MMFR_VOTE_AVG);
         madMax.setReleaseDate(MMFR_RELEASE_DATE);
         madMax.setPosterPath(null);
+
+        madMaxDetails = new MovieDetails();
+        madMaxDetails.setId(MMFR_ID);
+        madMaxDetails.setTitle(MMFR_TITLE);
+        madMaxDetails.setRevenue(MMFR_REVENUE);
+        madMaxDetails.setBudget(MMFR_BUDGET);
+        madMaxDetails.setHomepage(MMFR_HOMEPAGE);
+        madMaxDetails.setImdbId(MMFR_IMDB_ID);
+        madMaxDetails.setRuntime(MMFR_RUNTIME);
+        madMaxDetails.setVoteCount(MMFR_VOTE_COUNT);
+
+        when(mockRepo.getMovieDetails(MMFR_ID)).thenReturn(Observable.just(madMaxDetails));
     }
 
     @Test
@@ -73,10 +100,18 @@ public class MovieDetailsActivityTest extends BaseTest {
         activityRule.launchActivity(intent);
 
         onView(withId(R.id.ll_mda_container)).check(matches(isDisplayed()));
+        onView(withId(R.id.iv_mda_poster)).check(matches(isDisplayed()));
 
-        onView(withText(MMFR_TITLE)).check(matches(isDisplayed()));
         onView(withText(MMFR_OVERVIEW)).check(matches(isDisplayed()));
-        onView(withText(String.format(Locale.getDefault(),"%.1f",MMFR_VOTE_AVG)))
-                .check(matches(isDisplayed()));
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        onView(withId(R.id.tv_mda_released_value))
+                .check(matches(withText(
+                        format.format(MMFR_RELEASE_DATE))));
+        onView(withId(R.id.tv_mda_rating)).check(matches(withText("7.3/10")));
+        onView(withId(R.id.tv_mda_budget_value)).check(matches(withText("$150,000,000")));
+        onView(withId(R.id.tv_mda_revenue_value)).check(matches(withText("$378,436,354")));
+        onView(withId(R.id.tv_mda_runtime_value)).check(matches(withText("120 minutes")));
+        onView(withId(R.id.tv_mda_vote_count)).check(matches(withText("(4705 votes)")));
     }
 }

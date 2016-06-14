@@ -30,7 +30,7 @@ public class MovieDetailsEntityDataMapperTest {
         MovieDetailsEntity entity = mock(MovieDetailsEntity.class);
         int budget = 63000000;
         String homepage = "";
-        long id = 550;
+        int id = 550;
         String imdb_id = "tt0137523";
         String title = "Fight Club";
         String overview = "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \\\"fight clubs\\\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.";
@@ -74,10 +74,10 @@ public class MovieDetailsEntityDataMapperTest {
     @Test
     public void testMultipleMovieDetailsMappings() {
         MovieDetailsEntity firstMock = mock(MovieDetailsEntity.class);
-        long firstId = 154;
+        int firstId = 154;
         when(firstMock.getId()).thenReturn(firstId);
         MovieDetailsEntity secondMock = mock(MovieDetailsEntity.class);
-        long secondId = 1325;
+        int secondId = 1325;
         when(secondMock.getId()).thenReturn(secondId);
 
         List<MovieDetailsEntity> entities = new ArrayList<>();

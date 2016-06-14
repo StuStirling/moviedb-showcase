@@ -8,6 +8,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.stustirling.moviedbshowcase.BaseTest;
 import com.stustirling.moviedbshowcase.MainActivity;
 import com.stustirling.moviedbshowcase.R;
+import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 
 import org.junit.Before;
@@ -62,6 +63,8 @@ public class PopularMoviesFragmentTest extends BaseTest {
         entities.add(interstellar);
 
         when(mockRepo.getPopularMovies()).thenReturn(Observable.just(entities));
+
+        when(mockRepo.getMovieDetails(231)).thenReturn(Observable.<MovieDetails>empty());
     }
 
     @Test
@@ -85,7 +88,6 @@ public class PopularMoviesFragmentTest extends BaseTest {
 
         onView(withId(R.id.ll_mda_container)).check(matches(isDisplayed()));
 
-        onView(withText(INTERSTELLAR_TITLE)).check(matches(isDisplayed()));
         onView(withText(INTERSTELLAR_OVERVIEW)).check(matches(isDisplayed()));
     }
 
