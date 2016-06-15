@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.tvshows;
+package com.stustirling.moviedbshowcase.popular.tvshows;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 
 import com.squareup.picasso.Picasso;
-import com.stustirling.moviedbshowcase.PopularAdapter;
+import com.stustirling.moviedbshowcase.popular.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
 

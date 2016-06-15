@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Stu Stirling on 14/06/16.
  */
-public class TVShow {
+public class TVShow implements DomainEntity {
 
     int id;
     String name;

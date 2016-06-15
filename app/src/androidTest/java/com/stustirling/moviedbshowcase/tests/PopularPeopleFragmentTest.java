@@ -24,7 +24,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.mockito.Mockito.when;
 
@@ -75,7 +74,6 @@ public class PopularPeopleFragmentTest extends BaseTest {
         activityRule.launchActivity( null );
 
         onView(withText(R.string.tab3_title)).perform(click());
-        onView(withId(R.id.rv_ppf_people)).check(matches(isDisplayed()));
 
         onView(withText(NAME)).check(matches(isDisplayed()));
         onView(withText(KNOWN_FOR_1_TITLE+", "+KNOWN_FOR_2_TITLE)).check(matches(isDisplayed()));

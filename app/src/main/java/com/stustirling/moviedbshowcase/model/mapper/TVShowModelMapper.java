@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * Created by Stu Stirling on 12/06/16.
  */
 
-public class TVShowModelMapper {
+public class TVShowModelMapper implements ModelMapper {
 
     @Inject
     public TVShowModelMapper() {

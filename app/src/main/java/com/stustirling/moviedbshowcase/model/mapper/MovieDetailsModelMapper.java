@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * Created by Stu Stirling on 12/06/16.
  */
 
-public class MovieDetailsModelMapper {
+public class MovieDetailsModelMapper implements ModelMapper {
 
     @Inject
     public MovieDetailsModelMapper() {

@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.popularpeople;
+package com.stustirling.moviedbshowcase.popular.popularpeople;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.os.Build;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
-import com.stustirling.moviedbshowcase.PopularAdapter;
+import com.stustirling.moviedbshowcase.popular.PopularAdapter;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 import com.stustirling.moviedbshowcase.model.PersonModel;
 

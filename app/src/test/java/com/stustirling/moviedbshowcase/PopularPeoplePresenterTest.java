@@ -3,7 +3,8 @@ package com.stustirling.moviedbshowcase;
 import com.stustirling.moviedbshowcase.domain.interactor.GetPopularPeople;
 import com.stustirling.moviedbshowcase.model.mapper.MovieSummaryModelMapper;
 import com.stustirling.moviedbshowcase.model.mapper.PersonModelMapper;
-import com.stustirling.moviedbshowcase.popularpeople.PopularPeoplePresenter;
+import com.stustirling.moviedbshowcase.popular.PopularPresenter;
+import com.stustirling.moviedbshowcase.popular.popularpeople.PopularPeoplePresenter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.verify;
  */
 public class PopularPeoplePresenterTest {
 
-    @Mock PopularPeoplePresenter.PopularPeopleView mockedView;
+    @Mock PopularPresenter.PopularView mockedView;
     @Mock GetPopularPeople  mockedUseCase;
 
     @Before

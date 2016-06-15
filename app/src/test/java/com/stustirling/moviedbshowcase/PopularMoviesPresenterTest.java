@@ -2,7 +2,8 @@ package com.stustirling.moviedbshowcase;
 
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularMovies;
 import com.stustirling.moviedbshowcase.model.mapper.MovieSummaryModelMapper;
-import com.stustirling.moviedbshowcase.popularmovies.PopularMoviesPresenter;
+import com.stustirling.moviedbshowcase.popular.PopularPresenter;
+import com.stustirling.moviedbshowcase.popular.popularmovies.PopularMoviesPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class PopularMoviesPresenterTest {
 
-    @Mock PopularMoviesPresenter.PopularMoviesView mockedView;
+    @Mock
+    PopularPresenter.PopularView mockedView;
     @Mock GetTop20PopularMovies mockedUseCase;
 
     private PopularMoviesPresenter presenter;
@@ -68,14 +70,14 @@ public class PopularMoviesPresenterTest {
 
         presenter.init(mockedView);
 
-        presenter.filterMovies("man");
+        presenter.filterItems("man");
         verify(mockedView).showFilteredMovies(filterCaptor.capture());
 
         final List<MovieSummaryModel> manFilter = filterCaptor.getValue();
         assertEquals(1,manFilter.size());
         assertEquals(ironMan.getTitle(),manFilter.get(0).getTitle());
 
-        presenter.filterMovies("CaP");
+        presenter.filterItems("CaP");
         verify(mockedView).showFilteredMovies(filterCaptor.capture());
 
         final List<MovieSummaryModel> capFilter = filterCaptor.getValue();
@@ -83,7 +85,7 @@ public class PopularMoviesPresenterTest {
         assertEquals(captainAmerica.getTitle(),capFilter.get(0).getTitle());
 
 
-        presenter.filterMovies("ck PA");
+        presenter.filterItems("ck PA");
         verify(mockedView).showFilteredMovies(filterCaptor.capture());
 
         final List<MovieSummaryModel> ckpaFilter = filterCaptor.getValue();

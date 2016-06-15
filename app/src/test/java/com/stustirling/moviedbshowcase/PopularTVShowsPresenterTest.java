@@ -2,7 +2,8 @@ package com.stustirling.moviedbshowcase;
 
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularTVShows;
 import com.stustirling.moviedbshowcase.model.mapper.TVShowModelMapper;
-import com.stustirling.moviedbshowcase.tvshows.PopularTVShowsPresenter;
+import com.stustirling.moviedbshowcase.popular.PopularPresenter;
+import com.stustirling.moviedbshowcase.popular.tvshows.PopularTVShowsPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.verify;
 public class PopularTVShowsPresenterTest {
 
     @Mock
-    PopularTVShowsPresenter.PopularTVShowsView mockedView;
+    PopularPresenter.PopularView mockedView;
     @Mock GetTop20PopularTVShows mockedUseCase;
 
 

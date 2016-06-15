@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Stu Stirling on 07/06/16.
  */
-public class MovieSummary {
+public class MovieSummary implements DomainEntity{
 
     private int id;
     private String title;

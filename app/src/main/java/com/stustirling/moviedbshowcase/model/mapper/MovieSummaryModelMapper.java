@@ -13,11 +13,12 @@ import javax.inject.Inject;
  * Created by Stu Stirling on 12/06/16.
  */
 
-public class MovieSummaryModelMapper {
+public class MovieSummaryModelMapper implements ModelMapper {
 
     @Inject
     public MovieSummaryModelMapper() {
     }
+
 
     public MovieSummaryModel transform(MovieSummary movieSummary) {
         MovieSummaryModel model = null;
@@ -44,4 +45,5 @@ public class MovieSummaryModelMapper {
         }
         return movieSummaryModels;
     }
+
 }

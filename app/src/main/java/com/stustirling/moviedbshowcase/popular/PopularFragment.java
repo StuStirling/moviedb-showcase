@@ -1,10 +1,7 @@
-package com.stustirling.moviedbshowcase.popularpeople;
+package com.stustirling.moviedbshowcase.popular;
 
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,53 +16,44 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
-import com.stustirling.moviedbshowcase.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
 import com.stustirling.moviedbshowcase.model.PopularModel;
-import com.stustirling.moviedbshowcase.model.PersonModel;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Stu Stirling on 15/06/16.
  */
-public class PopularPeopleFragment extends BaseFragment implements PopularPeoplePresenter.PopularPeopleView,PopularAdapter.ModelSelectedListener, SearchView.OnQueryTextListener {
+public abstract class PopularFragment extends BaseFragment implements PopularPresenter.PopularView,PopularAdapter.ModelSelectedListener, SearchView.OnQueryTextListener {
 
     private Unbinder unbinder;
-    @BindView(R.id.rv_ppf_people) RecyclerView recyclerView;
-    @BindView(R.id.srl_ppf_refresh) SwipeRefreshLayout refreshLayout;
-
-    private PopularPeopleAdapter adapter;
-
-    @Inject
-    PopularPeoplePresenter presenter;
-    @Inject Activity activity;
+    @BindView(R.id.rv_pmif_items) RecyclerView recyclerView;
+    @BindView(R.id.srl_pmif_refresh) SwipeRefreshLayout refreshLayout;
+    protected PopularAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_people, container, false);
+        View v = inflater.inflate(R.layout.fragment_popular_items, container, false);
         unbinder = ButterKnife.bind(this,v);
 
         setHasOptionsMenu(true);
+
         setupUI();
 
         return v;
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        if ( refreshLayout.isRefreshing() )
-            animateSwipeRefresh(false);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        init();
     }
 
     @Override
@@ -76,34 +64,18 @@ public class PopularPeopleFragment extends BaseFragment implements PopularPeople
         searchView.setOnQueryTextListener(this);
     }
 
-    private void setupUI() {
-        refreshLayout.setEnabled(false);
-        adapter = new PopularPeopleAdapter(this);
-        adapter.setHasStableIds(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void animateSwipeRefresh(final boolean animate) {
-        refreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                refreshLayout.setRefreshing(animate);
-            }
-        });
+    @Override
+    public void onPause() {
+        super.onPause();
+        if ( refreshLayout.isRefreshing() )
+            animateSwipeRefresh(false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        init();
-    }
-
-    private void init() {
-        getComponent(MovieDBComponent.class).inject(this);
-        presenter.init(this);
+    public void onResume() {
+        super.onResume();
+        if ( getPresenter() != null )
+            getPresenter().filterItems("");
     }
 
     @Override
@@ -112,9 +84,42 @@ public class PopularPeopleFragment extends BaseFragment implements PopularPeople
         unbinder.unbind();
     }
 
+    protected void init() {
+        injectWithComponent(getComponent(MovieDBComponent.class));
+        getPresenter().init(this);
+    }
+
+    protected abstract void injectWithComponent(MovieDBComponent component);
+
+    private void setupUI() {
+        refreshLayout.setEnabled(false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(getAdapter());
+    }
+
+    protected void animateSwipeRefresh(final boolean animate) {
+        refreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(animate);
+            }
+        });
+    }
+
+    protected abstract PopularPresenter getPresenter();
+    protected abstract PopularAdapter getAdapter();
+
     @Override
-    public void refreshPopularPeople(List<PersonModel> people) {
-        adapter.updateModel(people);
+    public void showFilteredModelItems(List<? extends PopularModel> filteredMovies) {
+        getAdapter().updateModel(filteredMovies);
+        recyclerView.scrollToPosition(0);
+    }
+
+    @Override
+    public void refreshModelItems(List<? extends PopularModel> items) {
+        getAdapter().updateModel(items);
     }
 
     @Override
@@ -123,25 +128,21 @@ public class PopularPeopleFragment extends BaseFragment implements PopularPeople
     }
 
     @Override
-    public void modelItemSelected(PopularModel popularModel, ImageView poster) {
-
-    }
-
-    @Override
-    public void showFilteredPeople(List<PersonModel> filteredPeople) {
-        adapter.updateModel(filteredPeople);
-        recyclerView.scrollToPosition(0);
-    }
-
-
-    @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        presenter.filterPeople(newText);
+        getPresenter().filterItems(newText);
         return true;
     }
+
+    @Override
+    public void modelItemSelected(PopularModel popularModel, ImageView poster) {
+        launchModelDetailsActivity(popularModel,poster);
+    }
+
+    protected abstract void launchModelDetailsActivity(PopularModel modelItem,ImageView poster);
+
 }

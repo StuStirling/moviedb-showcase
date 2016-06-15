@@ -3,9 +3,10 @@ package com.stustirling.moviedbshowcase.internal.di.components;
 import com.stustirling.moviedbshowcase.internal.di.PerActivity;
 import com.stustirling.moviedbshowcase.internal.di.modules.ActivityModule;
 import com.stustirling.moviedbshowcase.internal.di.modules.MovieDBModule;
-import com.stustirling.moviedbshowcase.popularmovies.PopularMoviesFragment;
-import com.stustirling.moviedbshowcase.popularpeople.PopularPeopleFragment;
-import com.stustirling.moviedbshowcase.tvshows.PopularTVShowsFragment;
+import com.stustirling.moviedbshowcase.popular.PopularFragment;
+import com.stustirling.moviedbshowcase.popular.popularmovies.PopularMoviesFragment;
+import com.stustirling.moviedbshowcase.popular.popularpeople.PopularPeopleFragment;
+import com.stustirling.moviedbshowcase.popular.tvshows.PopularTVShowsFragment;
 
 import dagger.Component;
 
@@ -18,6 +19,8 @@ public interface MovieDBComponent extends ActivityComponent{
     void inject(PopularMoviesFragment fragment);
     void inject(PopularTVShowsFragment fragment);
     void inject(PopularPeopleFragment fragment);
+
+    void inject(PopularFragment fragment);
 
 //    UseCase getTop20PopularMoviesUseCase();
 //    UseCase getTop20PopularTVShowsUseCase();

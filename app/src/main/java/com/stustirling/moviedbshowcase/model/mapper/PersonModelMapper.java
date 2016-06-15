@@ -14,7 +14,7 @@ import javax.inject.Inject;
  * Created by Stu Stirling on 12/06/16.
  */
 
-public class PersonModelMapper {
+public class PersonModelMapper implements ModelMapper {
 
     private final MovieSummaryModelMapper movieSummaryMapper;
 

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Stu Stirling on 15/06/16.
  */
-public class Person {
+public class Person implements DomainEntity {
 
     int id;
     List<MovieSummary> knownFor;

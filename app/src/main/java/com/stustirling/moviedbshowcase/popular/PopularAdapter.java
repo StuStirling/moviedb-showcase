@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase;
+package com.stustirling.moviedbshowcase.popular;
 
 import android.content.Context;
 import android.os.Build;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.model.PopularModel;
 
 import java.util.ArrayList;
@@ -80,6 +81,7 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
     public PopularAdapter(ModelSelectedListener modelSelectedListener ) {
         this.modelObjects = new ArrayList<>();
         this.modelSelectedListener = modelSelectedListener;
+        setHasStableIds(true);
     }
 
     protected abstract void setTransitionNames(Context context, ViewHolder holder);

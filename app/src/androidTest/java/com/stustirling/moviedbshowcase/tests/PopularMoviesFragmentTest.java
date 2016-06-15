@@ -1,7 +1,5 @@
 package com.stustirling.moviedbshowcase.tests;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -74,8 +72,6 @@ public class PopularMoviesFragmentTest extends BaseTest {
     public void shouldShowPopularMoviesFragment() {
         activityRule.launchActivity( null );
 
-        onView(ViewMatchers.withId(R.id.rv_pmf_movies)).check(matches(isDisplayed()));
-
         onView(withText(INTERSTELLAR_TITLE)).check(matches(isDisplayed()));
         onView(withText(INTERSTELLAR_OVERVIEW)).check(matches(isDisplayed()));
         onView(withText(Float.valueOf(INTERSTELLAR_RATING).toString())).check(matches(isDisplayed()));
@@ -86,8 +82,7 @@ public class PopularMoviesFragmentTest extends BaseTest {
     public void shouldShowMovieDetails() {
         activityRule.launchActivity( null );
 
-        onView(withId(R.id.rv_pmf_movies))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withText(INTERSTELLAR_TITLE)).perform(click());
 
         onView(withId(R.id.ll_mda_container)).check(matches(isDisplayed()));
 

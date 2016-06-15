@@ -1,6 +1,5 @@
 package com.stustirling.moviedbshowcase.tests;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -75,7 +74,6 @@ public class PopularTVShowsFragmentTest extends BaseTest {
         activityRule.launchActivity( null );
 
         onView(withText(R.string.tab2_title)).perform(click());
-        onView(withId(R.id.rv_ptf_tvshows)).check(matches(isDisplayed()));
 
         onView(withText(BREAKING_BAD_NAME)).check(matches(isDisplayed()));
         onView(withText(BREAKING_BAD_OVERVIEW)).check(matches(isDisplayed()));
@@ -89,8 +87,7 @@ public class PopularTVShowsFragmentTest extends BaseTest {
 
         onView(withText(R.string.tab2_title)).perform(click());
 
-        onView(withId(R.id.rv_ptf_tvshows))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+        onView(withText(BREAKING_BAD_NAME)).perform(click());
 
         onView(withId(R.id.ll_tsda_container)).check(matches(isDisplayed()));
 
