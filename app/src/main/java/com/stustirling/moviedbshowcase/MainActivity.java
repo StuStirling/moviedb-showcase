@@ -18,6 +18,7 @@ import com.stustirling.moviedbshowcase.internal.di.HasComponent;
 import com.stustirling.moviedbshowcase.internal.di.components.DaggerMovieDBComponent;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
 import com.stustirling.moviedbshowcase.popularmovies.PopularMoviesFragment;
+import com.stustirling.moviedbshowcase.popularpeople.PopularPeopleFragment;
 import com.stustirling.moviedbshowcase.tvshows.PopularTVShowsFragment;
 
 import butterknife.BindView;
@@ -149,7 +150,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MovieDBCo
             else if ( position == 1 )
                 return new PopularTVShowsFragment();
             else
-                return PlaceholderFragment.newInstance(position + 1);
+                return new PopularPeopleFragment();
         }
 
         @Override

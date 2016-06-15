@@ -2,11 +2,13 @@ package com.stustirling.moviedbshowcase.popularpeople;
 
 import com.stustirling.moviedbshowcase.domain.Person;
 import com.stustirling.moviedbshowcase.domain.interactor.UseCase;
+import com.stustirling.moviedbshowcase.model.PersonModel;
 import com.stustirling.moviedbshowcase.model.mapper.PersonModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import rx.Subscriber;
@@ -21,9 +23,11 @@ public class PopularPeoplePresenter {
     private PopularPeopleView view;
     private ArrayList<Person> personsList;
 
-    public PopularPeoplePresenter(@Named("getPopularPeople")UseCase useCase, PersonModelMapper mapper ) {
+    @Inject
+    public PopularPeoplePresenter(@Named("popularPeople")UseCase useCase, PersonModelMapper mapper ) {
         this.useCase = useCase;
         this.mapper = mapper;
+        this.personsList = new ArrayList<>();
     }
 
     public void init( PopularPeopleView view ) {
@@ -35,7 +39,8 @@ public class PopularPeoplePresenter {
     private Subscriber<List<Person>> subscriber = new Subscriber<List<Person>>() {
         @Override
         public void onCompleted() {
-
+            view.refreshPopularPeople(mapper.transform(personsList));
+            view.loading(false);
         }
 
         @Override
@@ -51,6 +56,7 @@ public class PopularPeoplePresenter {
 
     public interface PopularPeopleView {
         void loading(boolean loading);
+        void refreshPopularPeople(List<PersonModel> people);
     }
 
 

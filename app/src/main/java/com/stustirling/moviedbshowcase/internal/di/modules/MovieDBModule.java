@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase.internal.di.modules;
 
+import com.stustirling.moviedbshowcase.domain.interactor.GetPopularPeople;
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularMovies;
 import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularTVShows;
 import com.stustirling.moviedbshowcase.domain.interactor.UseCase;
@@ -37,6 +38,11 @@ public class MovieDBModule {
     @Provides @PerActivity @Named("top20PopularTVShows")
     UseCase provideGetTop20PopularTVShowsUseCase(GetTop20PopularTVShows getTop20PopularTVShows) {
         return getTop20PopularTVShows;
+    }
+
+    @Provides @PerActivity @Named("popularPeople")
+    UseCase provideGetPopularPeopleUseCase(GetPopularPeople getPopularPeople) {
+        return getPopularPeople;
     }
 
 }
