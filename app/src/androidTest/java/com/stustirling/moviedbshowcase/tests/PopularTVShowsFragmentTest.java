@@ -8,6 +8,7 @@ import com.stustirling.moviedbshowcase.BaseTest;
 import com.stustirling.moviedbshowcase.MainActivity;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
+import com.stustirling.moviedbshowcase.domain.Person;
 import com.stustirling.moviedbshowcase.domain.TVShow;
 
 import org.junit.Before;
@@ -63,6 +64,8 @@ public class PopularTVShowsFragmentTest extends BaseTest {
         when(mockRepo.getPopularMovies()).thenReturn(Observable.<List<MovieSummary>>empty());
 
         when(mockRepo.getPopularTVShows()).thenReturn(Observable.just(entities));
+
+        when(mockRepo.getPopularPeople()).thenReturn(Observable.<List<Person>>empty());
 
 //        when(mockRepo.getMovieDetails(231)).thenReturn(Observable.<MovieDetails>empty());
     }
