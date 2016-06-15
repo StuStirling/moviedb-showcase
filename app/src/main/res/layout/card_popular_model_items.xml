@@ -21,7 +21,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,7 +53,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="6dp">
+                android:paddingBottom="6dp"
+                android:id="@+id/rl_cvpm_rating_container">
 
                 <LinearLayout
                     android:orientation="horizontal"

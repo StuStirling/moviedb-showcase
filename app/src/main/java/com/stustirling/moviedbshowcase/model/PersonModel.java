@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Stu Stirling on 15/06/16.
  */
-public class PersonModel implements Parcelable {
+public class PersonModel implements Parcelable,PopularModel {
 
     int id;
     List<MovieSummaryModel> knownFor;

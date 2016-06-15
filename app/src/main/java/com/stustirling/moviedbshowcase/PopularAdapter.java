@@ -7,9 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.stustirling.moviedbshowcase.model.Model;
+import com.stustirling.moviedbshowcase.model.PopularModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +35,7 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
         public @BindView(R.id.tv_cvpm_rating) TextView rating;
         public @BindView(R.id.tv_cvpm_year) TextView year;
         public @BindView(R.id.iv_cvpm_poster) ImageView poster;
+        public @BindView(R.id.rl_cvpm_rating_container) RelativeLayout bottomContainer;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -73,7 +75,7 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
 
     }
 
-    protected List<? extends Model> modelObjects;
+    protected List<? extends PopularModel> modelObjects;
 
     public PopularAdapter(ModelSelectedListener modelSelectedListener ) {
         this.modelObjects = new ArrayList<>();
@@ -83,7 +85,7 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
     protected abstract void setTransitionNames(Context context, ViewHolder holder);
     protected abstract void displayModelInView(ViewHolder holder,int position);
 
-    public void updateModel(List<? extends Model> modelObjects) {
+    public void updateModel(List<? extends PopularModel> modelObjects) {
         this.modelObjects = modelObjects;
         this.notifyDataSetChanged();
     }
@@ -101,7 +103,7 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_popular_media,parent,false);
+                .inflate(R.layout.card_popular_model_items,parent,false);
         return new ViewHolder(itemView);
     }
 
@@ -111,6 +113,6 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
     }
 
     public interface ModelSelectedListener {
-        void modelItemSelected(Model modelItem, ImageView poster);
+        void modelItemSelected(PopularModel popularModelItem, ImageView poster);
     }
 }

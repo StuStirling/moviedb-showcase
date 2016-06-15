@@ -26,7 +26,7 @@ import com.stustirling.moviedbshowcase.BaseFragment;
 import com.stustirling.moviedbshowcase.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
-import com.stustirling.moviedbshowcase.model.Model;
+import com.stustirling.moviedbshowcase.model.PopularModel;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
 import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsActivity;
 
@@ -137,8 +137,8 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
 
 
     @Override
-    public void modelItemSelected(Model model, ImageView poster ) {
-        Intent intent = TVShowDetailsActivity.launchIntent(getContext(), (TVShowModel) model);
+    public void modelItemSelected(PopularModel popularModel, ImageView poster ) {
+        Intent intent = TVShowDetailsActivity.launchIntent(getContext(), (TVShowModel) popularModel);
 
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
             Pair<View,String> pair1 = Pair.create((View)poster,poster.getTransitionName());

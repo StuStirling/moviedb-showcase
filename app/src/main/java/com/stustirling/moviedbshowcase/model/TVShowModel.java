@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by Stu Stirling on 14/06/16.
  */
-public class TVShowModel implements Parcelable,Model {
+public class TVShowModel implements Parcelable,PopularModel {
 
     int id;
     String name;

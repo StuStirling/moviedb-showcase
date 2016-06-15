@@ -16,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
+import com.stustirling.moviedbshowcase.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
+import com.stustirling.moviedbshowcase.model.PopularModel;
 import com.stustirling.moviedbshowcase.model.PersonModel;
 
 import java.util.List;
@@ -33,7 +36,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularPeopleFragment extends BaseFragment implements PopularPeoplePresenter.PopularPeopleView,PopularPeopleAdapter.PersonClickListener, SearchView.OnQueryTextListener {
+public class PopularPeopleFragment extends BaseFragment implements PopularPeoplePresenter.PopularPeopleView,PopularAdapter.ModelSelectedListener, SearchView.OnQueryTextListener {
 
     private Unbinder unbinder;
     @BindView(R.id.rv_ppf_people) RecyclerView recyclerView;
@@ -111,7 +114,7 @@ public class PopularPeopleFragment extends BaseFragment implements PopularPeople
 
     @Override
     public void refreshPopularPeople(List<PersonModel> people) {
-        adapter.updatePopularPeople(people);
+        adapter.updateModel(people);
     }
 
     @Override
@@ -120,13 +123,13 @@ public class PopularPeopleFragment extends BaseFragment implements PopularPeople
     }
 
     @Override
-    public void personSelected(PersonModel person) {
+    public void modelItemSelected(PopularModel popularModel, ImageView poster) {
 
     }
 
     @Override
     public void showFilteredPeople(List<PersonModel> filteredPeople) {
-        adapter.updatePopularPeople(filteredPeople);
+        adapter.updateModel(filteredPeople);
         recyclerView.scrollToPosition(0);
     }
 
