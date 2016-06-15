@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.os.Build;
 
 import com.squareup.picasso.Picasso;
-import com.stustirling.moviedbshowcase.popular.PopularAdapter;
+import com.stustirling.moviedbshowcase.MovieGenre;
 import com.stustirling.moviedbshowcase.R;
+import com.stustirling.moviedbshowcase.TVShowGenre;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
+import com.stustirling.moviedbshowcase.popular.PopularAdapter;
 
 /**
  * Created by Stu Stirling on 10/06/16.
@@ -32,6 +34,20 @@ public class PopularTVShowsAdapter extends PopularAdapter {
         holder.setOverview(tvShow.getOverview());
         holder.setRating(tvShow.getVoteAvg());
         holder.setYear(tvShow.getFirstAirDate());
+
+        int[] genres = tvShow.getGenreIds();
+        if ( genres.length > 0 ) {
+            StringBuilder builder = new StringBuilder();
+            for ( int i = 0; i < genres.length; i++ ) {
+                String genreName = TVShowGenre.getName(genres[i]);
+                if ( genreName == null )
+                    genreName = MovieGenre.getName(genres[i]);
+                builder.append(genreName);
+                if ( i < genres.length - 1 )
+                    builder.append(", ");
+            }
+            holder.genres.setText(builder.toString());
+        }
 
         if ( tvShow.getPosterPath() != null ) {
             Picasso.with(holder.getPoster().getContext())

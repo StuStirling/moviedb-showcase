@@ -39,7 +39,6 @@ public class PopularPeoplePresenter extends PopularPresenter{
 
         @Override
         public void onNext(List<Person> people) {
-
             modelItems.addAll(mapper.transform(people));
         }
     };

@@ -31,14 +31,19 @@ public class PopularPeopleAdapter extends PopularAdapter {
         PersonModel person = (PersonModel) modelObjects.get(position);
         holder.bottomContainer.setVisibility(View.GONE);
         holder.setTitle(person.getName());
+        holder.genres.setVisibility(View.GONE);
 
         if ( person.getKnownFor().size() > 0 ) {
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < person.getKnownFor().size(); i++ ) {
+                // TODO: Depending whether movie or tv show the title may not be set.
                 MovieSummaryModel movie = person.getKnownFor().get(i);
-                builder.append(movie.getTitle());
-                if ( i < person.getKnownFor().size() - 1 )
-                    builder.append(", ");
+                if (movie.getTitle() != null) {
+                    builder.append(movie.getTitle());
+                    if ( i < person.getKnownFor().size() - 1 )
+                        builder.append(", ");
+                }
+
             }
             holder.setOverview(builder.toString());
         }
