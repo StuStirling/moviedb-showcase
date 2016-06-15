@@ -57,9 +57,25 @@ public class PopularMoviesPresenter {
         }
     };
 
+    public List<MovieSummary> getRetrievedPopularMovies() {
+        return movieSummaries;
+    }
+
+    public void filterMovies(String query) {
+        final List<MovieSummaryModel> filteredMovies = new ArrayList<>();
+        for ( MovieSummary movie : getRetrievedPopularMovies() ) {
+            final String lowerCaseTitle = movie.getTitle().toLowerCase();
+            if ( lowerCaseTitle.contains(query.toLowerCase()))
+                filteredMovies.add(movieSummaryMapper.transform(movie));
+        }
+        popularMoviesView.showFilteredMovies(filteredMovies);
+    }
+
     public interface PopularMoviesView {
         void loading(boolean loading);
         void refreshMovieSummaries(List<MovieSummaryModel> movieSummaries);
+
+        void showFilteredMovies(List<MovieSummaryModel> filteredMovies);
     }
 
 }

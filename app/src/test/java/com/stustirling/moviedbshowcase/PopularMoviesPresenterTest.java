@@ -23,23 +23,73 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class PopularMoviesPresenterTest {
 
-    @Mock
-    PopularMoviesPresenter.PopularMoviesView mockedView;
+    @Mock PopularMoviesPresenter.PopularMoviesView mockedView;
     @Mock GetTop20PopularMovies mockedUseCase;
+
+    private PopularMoviesPresenter presenter;
+
+   /* @Captor
+    ArgumentCaptor<ArrayList<MovieSummaryModel>> filterCaptor;*/
 
 
     @Before
-    public void setup() {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
+        presenter = new PopularMoviesPresenter(mockedUseCase,new MovieSummaryModelMapper());
     }
 
     @Test
     public void testInitialisation() {
-        PopularMoviesPresenter controller = new PopularMoviesPresenter(mockedUseCase,new MovieSummaryModelMapper());
-        controller.init(mockedView);
-
+        presenter.init(mockedView);
         verify(mockedView,times(1)).loading(true);
         verify(mockedUseCase,times(1)).execute(any(Subscriber.class));
     }
+
+
+    /* TODO: Get this test working correctly. Breaks when AndroidTest and MovieSummaryModel is Parcelable */
+    /*@Test
+    public void testFiltering() {
+        MovieSummary ironMan = new MovieSummary();
+        ironMan.setTitle("Iron Man");
+
+        MovieSummary captainAmerica = new MovieSummary();
+        captainAmerica.setTitle("Captain America");
+
+        MovieSummary blackPanther = new MovieSummary();
+        blackPanther.setTitle("Black Panther");
+
+        List<MovieSummary> movieSummaries = new ArrayList<>();
+        movieSummaries.add(ironMan);
+        movieSummaries.add(captainAmerica);
+        movieSummaries.add(blackPanther);
+
+        when(mockedUseCase.buildUseCaseObservable())
+                .thenReturn(Observable.just(movieSummaries));
+
+        presenter.init(mockedView);
+
+        presenter.filterMovies("man");
+        verify(mockedView).showFilteredMovies(filterCaptor.capture());
+
+        final List<MovieSummaryModel> manFilter = filterCaptor.getValue();
+        assertEquals(1,manFilter.size());
+        assertEquals(ironMan.getTitle(),manFilter.get(0).getTitle());
+
+        presenter.filterMovies("CaP");
+        verify(mockedView).showFilteredMovies(filterCaptor.capture());
+
+        final List<MovieSummaryModel> capFilter = filterCaptor.getValue();
+        assertEquals(1,capFilter.size());
+        assertEquals(captainAmerica.getTitle(),capFilter.get(0).getTitle());
+
+
+        presenter.filterMovies("ck PA");
+        verify(mockedView).showFilteredMovies(filterCaptor.capture());
+
+        final List<MovieSummaryModel> ckpaFilter = filterCaptor.getValue();
+        assertEquals(1,ckpaFilter.size());
+        assertEquals(blackPanther.getTitle(),ckpaFilter.get(0).getTitle());
+
+    }*/
 
 }

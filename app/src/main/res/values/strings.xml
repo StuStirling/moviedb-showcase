@@ -25,5 +25,6 @@
     <string name="transition_tvshow_poster">tvshow_poster</string>
     <string name="transition_tvshow_overview">tvshow_overview</string>
     <string name="overview">Overview</string>
+    <string name="action_search">Search</string>
 
 </resources>
