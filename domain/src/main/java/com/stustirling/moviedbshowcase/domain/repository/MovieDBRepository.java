@@ -2,6 +2,7 @@ package com.stustirling.moviedbshowcase.domain.repository;
 
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
+import com.stustirling.moviedbshowcase.domain.Person;
 import com.stustirling.moviedbshowcase.domain.TVShow;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface MovieDBRepository {
     Observable<MovieDetails> getMovieDetails(int id);
 
     Observable<List<TVShow>> getPopularTVShows();
+
+    Observable<List<Person>> getPopularPeople();
 }
