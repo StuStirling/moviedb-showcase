@@ -71,6 +71,11 @@ public class PopularTVShowsAdapter extends RecyclerView.Adapter<PopularTVShowsAd
     }
 
     @Override
+    public long getItemId(int position) {
+        return popularTVShows.get(position).getId();
+    }
+
+    @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TVShowModel tvShow = popularTVShows.get(position);
         holder.title.setText(tvShow.getName());

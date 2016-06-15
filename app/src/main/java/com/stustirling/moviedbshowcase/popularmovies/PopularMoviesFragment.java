@@ -75,7 +75,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_pop_movies,menu);
+        inflater.inflate(R.menu.menu_search,menu);
 
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setOnQueryTextListener(this);
@@ -143,7 +143,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
     }
 
     @Override
-    public void showFilteredMovies(List<MovieSummaryModel> filteredMovies ) {
+    public void showFilteredMovies(List<MovieSummaryModel> filteredMovies) {
         adapter.updatePopularMovies(filteredMovies);
         recyclerView.scrollToPosition(0);
     }

@@ -55,11 +55,26 @@ public class PopularTVShowsPresenter {
         }
     };
 
+    public void filterTVShows(String query) {
+        final List<TVShowModel> filteredTVShows = new ArrayList<>();
+        if (query.length() == 0 )
+            filteredTVShows.addAll(mapper.transform(tvShows));
+        else {
+            for (TVShow tvShow : tvShows) {
+                final String lowerCaseTitle = tvShow.getName().toLowerCase();
+                if (lowerCaseTitle.contains(query.toLowerCase()))
+                    filteredTVShows.add(mapper.transform(tvShow));
+            }
+        }
+        view.showFilteredTVShows(filteredTVShows);
+    }
 
 
     public interface PopularTVShowsView {
         void loading(boolean loading);
         void refreshTVShows(List<TVShowModel> tvShows);
+
+        void showFilteredTVShows(List<TVShowModel> filteredTVShows);
     }
 
 }

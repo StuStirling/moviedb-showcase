@@ -9,11 +9,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,7 +40,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularTVShowsFragment extends BaseFragment implements PopularTVShowsPresenter.PopularTVShowsView,PopularTVShowsAdapter.TVShowClickListener {
+public class PopularTVShowsFragment extends BaseFragment implements PopularTVShowsPresenter.PopularTVShowsView,PopularTVShowsAdapter.TVShowClickListener, SearchView.OnQueryTextListener {
 
     private Unbinder unbinder;
     @BindView(R.id.rv_ptf_tvshows) RecyclerView recyclerView;
@@ -55,6 +59,7 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
         View v = inflater.inflate(R.layout.fragment_tvshows, container, false);
         unbinder = ButterKnife.bind(this,v);
 
+        setHasOptionsMenu(true);
         setupUI();
 
         return v;
@@ -67,9 +72,18 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
             animateSwipeRefresh(false);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_search,menu);
+
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setOnQueryTextListener(this);
+    }
+
     private void setupUI() {
         refreshLayout.setEnabled(false);
         adapter = new PopularTVShowsAdapter(this);
+        adapter.setHasStableIds(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -132,6 +146,23 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
         } else {
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void showFilteredTVShows(List<TVShowModel> filteredTVShows) {
+        adapter.updatePopularTVShows(filteredTVShows);
+        recyclerView.scrollToPosition(0);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        presenter.filterTVShows(newText);
+        return true;
     }
 
 

@@ -63,10 +63,14 @@ public class PopularMoviesPresenter {
 
     public void filterMovies(String query) {
         final List<MovieSummaryModel> filteredMovies = new ArrayList<>();
-        for ( MovieSummary movie : getRetrievedPopularMovies() ) {
-            final String lowerCaseTitle = movie.getTitle().toLowerCase();
-            if ( lowerCaseTitle.contains(query.toLowerCase()))
-                filteredMovies.add(movieSummaryMapper.transform(movie));
+        if (query.length() == 0 )
+            filteredMovies.addAll(movieSummaryMapper.transform(movieSummaries));
+        else {
+            for (MovieSummary movie : getRetrievedPopularMovies()) {
+                final String lowerCaseTitle = movie.getTitle().toLowerCase();
+                if (lowerCaseTitle.contains(query.toLowerCase()))
+                    filteredMovies.add(movieSummaryMapper.transform(movie));
+            }
         }
         popularMoviesView.showFilteredMovies(filteredMovies);
     }
