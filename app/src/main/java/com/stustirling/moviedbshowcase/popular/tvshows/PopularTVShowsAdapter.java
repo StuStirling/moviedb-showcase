@@ -36,7 +36,7 @@ public class PopularTVShowsAdapter extends PopularAdapter {
         holder.setYear(tvShow.getFirstAirDate());
 
         int[] genres = tvShow.getGenreIds();
-        if ( genres.length > 0 ) {
+        if ( genres != null && genres.length > 0 ) {
             StringBuilder builder = new StringBuilder();
             for ( int i = 0; i < genres.length; i++ ) {
                 String genreName = TVShowGenre.getName(genres[i]);
