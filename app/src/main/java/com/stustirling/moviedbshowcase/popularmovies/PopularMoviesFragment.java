@@ -21,11 +21,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
+import com.stustirling.moviedbshowcase.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
+import com.stustirling.moviedbshowcase.model.Model;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsActivity;
 
@@ -40,7 +41,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularMoviesFragment extends BaseFragment implements PopularMoviesPresenter.PopularMoviesView,PopularMoviesAdapter.MovieSummaryClickListener, SearchView.OnQueryTextListener {
+public class PopularMoviesFragment extends BaseFragment implements PopularMoviesPresenter.PopularMoviesView,PopularAdapter.ModelSelectedListener, SearchView.OnQueryTextListener {
 
     private Unbinder unbinder;
     @BindView(R.id.rv_pmf_movies) RecyclerView recyclerView;
@@ -113,7 +114,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     @Override
     public void refreshMovieSummaries(List<MovieSummaryModel> movieSummaries) {
-        adapter.updatePopularMovies(movieSummaries);
+        adapter.updateModel(movieSummaries);
     }
 
     @Override
@@ -128,8 +129,8 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
     }
 
     @Override
-    public void movieSummarySelected(MovieSummaryModel movieSummaryModel, ImageView poster, TextView overview,TextView rating) {
-        Intent intent = MovieDetailsActivity.launchIntent(getContext(),movieSummaryModel);
+    public void modelItemSelected(Model model, ImageView poster) {
+        Intent intent = MovieDetailsActivity.launchIntent(getContext(), (MovieSummaryModel) model);
 
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
             Pair<View,String> pair1 = Pair.create((View)poster,poster.getTransitionName());
@@ -144,7 +145,7 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
     @Override
     public void showFilteredMovies(List<MovieSummaryModel> filteredMovies) {
-        adapter.updatePopularMovies(filteredMovies);
+        adapter.updateModel(filteredMovies);
         recyclerView.scrollToPosition(0);
     }
 

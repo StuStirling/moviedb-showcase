@@ -21,11 +21,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
+import com.stustirling.moviedbshowcase.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
+import com.stustirling.moviedbshowcase.model.Model;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
 import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsActivity;
 
@@ -40,7 +41,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularTVShowsFragment extends BaseFragment implements PopularTVShowsPresenter.PopularTVShowsView,PopularTVShowsAdapter.TVShowClickListener, SearchView.OnQueryTextListener {
+public class PopularTVShowsFragment extends BaseFragment implements PopularTVShowsPresenter.PopularTVShowsView,PopularAdapter.ModelSelectedListener, SearchView.OnQueryTextListener {
 
     private Unbinder unbinder;
     @BindView(R.id.rv_ptf_tvshows) RecyclerView recyclerView;
@@ -125,7 +126,7 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
 
     @Override
     public void refreshTVShows(List<TVShowModel> tvShows) {
-        adapter.updatePopularTVShows(tvShows);
+        adapter.updateModel(tvShows);
     }
 
     @Override
@@ -133,14 +134,14 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
         animateSwipeRefresh(loading);
     }
 
+
+
     @Override
-    public void tvShowSelected(TVShowModel tvShow, ImageView poster, TextView overview, TextView rating) {
-        Intent intent = TVShowDetailsActivity.launchIntent(getContext(),tvShow);
+    public void modelItemSelected(Model model, ImageView poster ) {
+        Intent intent = TVShowDetailsActivity.launchIntent(getContext(), (TVShowModel) model);
 
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
             Pair<View,String> pair1 = Pair.create((View)poster,poster.getTransitionName());
-//            Pair<View,String> pair2 = Pair.create((View)overview,overview.getTransitionName());
-//            Pair<View,String> pair3 = Pair.create((View)rating,rating.getTransitionName());
             ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair1);
             startActivity(intent,options.toBundle());
         } else {
@@ -150,7 +151,7 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
 
     @Override
     public void showFilteredTVShows(List<TVShowModel> filteredTVShows) {
-        adapter.updatePopularTVShows(filteredTVShows);
+        adapter.updateModel(filteredTVShows);
         recyclerView.scrollToPosition(0);
     }
 
@@ -164,6 +165,8 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
         presenter.filterTVShows(newText);
         return true;
     }
+
+
 
 
 }
