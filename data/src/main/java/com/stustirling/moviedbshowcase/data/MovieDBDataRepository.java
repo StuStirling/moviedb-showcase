@@ -1,14 +1,16 @@
 package com.stustirling.moviedbshowcase.data;
 
+import com.stustirling.moviedbshowcase.data.entity.mapper.EntityDataMapper;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
+import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.person.PersonEntity;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
+import com.stustirling.moviedbshowcase.data.rest.MovieDBService;
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
-import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
-import com.stustirling.moviedbshowcase.data.entity.mapper.EntityDataMapper;
+import com.stustirling.moviedbshowcase.domain.Person;
 import com.stustirling.moviedbshowcase.domain.TVShow;
 import com.stustirling.moviedbshowcase.domain.repository.MovieDBRepository;
-import com.stustirling.moviedbshowcase.data.rest.MovieDBService;
 
 import java.util.List;
 
@@ -63,6 +65,16 @@ public class MovieDBDataRepository implements MovieDBRepository {
                     @Override
                     public List<TVShow> call(List<TVShowEntity> tvShowEntities) {
                         return entityMapper.transformTVShows(tvShowEntities);
+                    }
+                });
+    }
+
+    public Observable<List<Person>> getPopularPeople() {
+        return movieDBService.getPopularPeople()
+                .map(new Func1<List<PersonEntity>, List<Person>>() {
+                    @Override
+                    public List<Person> call(List<PersonEntity> personEntities) {
+                        return entityMapper.transformPeople(personEntities);
                     }
                 });
     }

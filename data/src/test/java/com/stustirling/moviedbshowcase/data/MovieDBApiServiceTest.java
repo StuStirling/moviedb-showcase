@@ -3,6 +3,8 @@ package com.stustirling.moviedbshowcase.data;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.movies.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.data.entity.person.PersonEntity;
+import com.stustirling.moviedbshowcase.data.entity.person.PopularPeopleResponse;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.PopularTVShowsResponse;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 import com.stustirling.moviedbshowcase.data.rest.MovieDBApi;
@@ -21,6 +23,7 @@ import rx.observers.TestSubscriber;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -98,7 +101,28 @@ public class MovieDBApiServiceTest {
         assertEquals(tvshow,tvshowContainer.get(0));
 
         verify(mockApi,times(1)).getPopularTVShows();
+    }
 
+    @Test
+    public void shouldReturnPopularPeople() {
+        PersonEntity person = new PersonEntity();
+        PopularPeopleResponse response = mock(PopularPeopleResponse.class);
+        List<PersonEntity> results = new ArrayList<>();
+        results.add(person);
+        when(response.getPeople()).thenReturn(results);
+        when(mockApi.getPopularPeople()).thenReturn(Observable.just(response));
+
+        TestSubscriber<List<PersonEntity>> testSubscriber = new TestSubscriber<>();
+        apiService.getPopularPeople().subscribe(testSubscriber);
+
+        testSubscriber.assertNoErrors();
+        List<List<PersonEntity>> entityLists = testSubscriber.getOnNextEvents();
+        assertEquals(1,entityLists.size());
+        List<PersonEntity> personContainer = entityLists.get(0);
+        assertEquals(1,personContainer.size());
+        assertEquals(person,personContainer.get(0));
+
+        verify(mockApi,times(1)).getPopularPeople();
     }
 
 }

@@ -3,6 +3,8 @@ package com.stustirling.moviedbshowcase.data.rest;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
 import com.stustirling.moviedbshowcase.data.entity.movies.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.data.entity.person.PersonEntity;
+import com.stustirling.moviedbshowcase.data.entity.person.PopularPeopleResponse;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.PopularTVShowsResponse;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 
@@ -48,6 +50,16 @@ public class MovieDBApiService implements MovieDBService {
                     @Override
                     public List<TVShowEntity> call(PopularTVShowsResponse popularTVShowsResponse) {
                         return popularTVShowsResponse.getTVShows();
+                    }
+                });
+    }
+
+    public Observable<List<PersonEntity>> getPopularPeople() {
+        return movieDBApi.getPopularPeople()
+                .map(new Func1<PopularPeopleResponse, List<PersonEntity>>() {
+                    @Override
+                    public List<PersonEntity> call(PopularPeopleResponse popularPeopleResponse) {
+                        return popularPeopleResponse.getPeople();
                     }
                 });
     }

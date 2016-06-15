@@ -2,6 +2,7 @@ package com.stustirling.moviedbshowcase.data.rest;
 
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.movies.PopularMoviesResponse;
+import com.stustirling.moviedbshowcase.data.entity.person.PopularPeopleResponse;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.PopularTVShowsResponse;
 
 import retrofit2.http.GET;
@@ -26,4 +27,7 @@ public interface MovieDBApi {
 
     @GET("tv/popular")
     Observable<PopularTVShowsResponse> getPopularTVShows();
+
+    @GET("person/popular")
+    Observable<PopularPeopleResponse> getPopularPeople();
 }

@@ -3,10 +3,12 @@ package com.stustirling.moviedbshowcase.data;
 import com.stustirling.moviedbshowcase.data.entity.mapper.EntityDataMapper;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieDetailsEntity;
 import com.stustirling.moviedbshowcase.data.entity.movies.MovieSummaryEntity;
+import com.stustirling.moviedbshowcase.data.entity.person.PersonEntity;
 import com.stustirling.moviedbshowcase.data.entity.tvshows.TVShowEntity;
 import com.stustirling.moviedbshowcase.data.rest.MovieDBService;
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
+import com.stustirling.moviedbshowcase.domain.Person;
 import com.stustirling.moviedbshowcase.domain.TVShow;
 
 import org.junit.Before;
@@ -85,6 +87,22 @@ public class MovieDBDataRepositoryTest {
         verify(mockService,times(1)).getPopularTVShows();
         testSubscriber.assertNoErrors();
         List<List<TVShow>> outputs = testSubscriber.getOnNextEvents();
+        assertEquals(1,outputs.size());
+    }
+
+    @Test
+    public void shouldReturnSuppliedPopularPeople() {
+        PersonEntity personEntity = new PersonEntity();
+        List<PersonEntity> peopleEntities = new ArrayList<>();
+        peopleEntities.add(personEntity);
+        given(mockService.getPopularPeople()).willReturn(Observable.just(peopleEntities));
+
+        TestSubscriber<List<Person>> testSubscriber = new TestSubscriber<>();
+        movieDataRepo.getPopularPeople().subscribe(testSubscriber);
+
+        verify(mockService,times(1)).getPopularPeople();
+        testSubscriber.assertNoErrors();
+        List<List<Person>> outputs = testSubscriber.getOnNextEvents();
         assertEquals(1,outputs.size());
     }
 
