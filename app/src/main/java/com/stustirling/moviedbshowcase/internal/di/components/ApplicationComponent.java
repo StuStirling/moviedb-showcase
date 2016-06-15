@@ -1,6 +1,7 @@
 package com.stustirling.moviedbshowcase.internal.di.components;
 
 import com.stustirling.moviedbshowcase.BaseActivity;
+import com.stustirling.moviedbshowcase.ConnectionTester;
 import com.stustirling.moviedbshowcase.domain.repository.MovieDBRepository;
 
 /**
@@ -10,4 +11,5 @@ public interface ApplicationComponent {
     void inject(BaseActivity baseActivity);
 
     MovieDBRepository movieDBRepository();
+    ConnectionTester connectionTester();
 }

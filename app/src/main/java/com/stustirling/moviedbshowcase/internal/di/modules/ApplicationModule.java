@@ -3,6 +3,7 @@ package com.stustirling.moviedbshowcase.internal.di.modules;
 import android.app.Application;
 import android.content.Context;
 
+import com.stustirling.moviedbshowcase.ConnectionTester;
 import com.stustirling.moviedbshowcase.data.MovieDBDataRepository;
 import com.stustirling.moviedbshowcase.domain.repository.MovieDBRepository;
 
@@ -30,5 +31,10 @@ public class ApplicationModule {
     @Provides @Singleton
     MovieDBRepository providesMovieDBRepository(MovieDBDataRepository movideDBDataRepository) {
         return movideDBDataRepository;
+    }
+
+    @Provides @Singleton
+    ConnectionTester provideConnectionTester( Context context ) {
+        return new ConnectionTester(context);
     }
 }

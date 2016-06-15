@@ -86,7 +86,7 @@ public abstract class PopularFragment extends BaseFragment implements PopularPre
 
     protected void init() {
         injectWithComponent(getComponent(MovieDBComponent.class));
-        getPresenter().init(this,getContext());
+        getPresenter().init(this);
     }
 
     protected abstract void injectWithComponent(MovieDBComponent component);

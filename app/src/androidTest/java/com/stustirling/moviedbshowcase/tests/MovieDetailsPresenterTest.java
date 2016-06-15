@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase;
+package com.stustirling.moviedbshowcase.tests;
 
 import com.stustirling.moviedbshowcase.domain.interactor.GetMovieDetails;
 import com.stustirling.moviedbshowcase.model.mapper.MovieDetailsModelMapper;

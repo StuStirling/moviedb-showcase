@@ -46,6 +46,8 @@ public class PopularPeopleFragmentTest extends BaseTest {
     public void setUp() {
         super.setUp();
 
+        when(mockConnTester.isThereAnInternetConnection()).thenReturn(true);
+
         List<Person> entities = new ArrayList<>();
         Person person = new Person();
         person.setId(231);

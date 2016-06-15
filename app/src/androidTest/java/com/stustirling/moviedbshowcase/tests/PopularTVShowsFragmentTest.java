@@ -48,6 +48,8 @@ public class PopularTVShowsFragmentTest extends BaseTest {
     public void setUp() {
         super.setUp();
 
+        when(mockConnTester.isThereAnInternetConnection()).thenReturn(true);
+
         List<TVShow> entities = new ArrayList<>();
         TVShow breakingBad = new TVShow();
         breakingBad.setId(231);

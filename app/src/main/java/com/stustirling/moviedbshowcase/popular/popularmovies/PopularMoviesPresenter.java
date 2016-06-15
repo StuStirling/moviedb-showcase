@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase.popular.popularmovies;
 
+import com.stustirling.moviedbshowcase.ConnectionTester;
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
 import com.stustirling.moviedbshowcase.domain.interactor.UseCase;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
@@ -22,8 +23,8 @@ public class PopularMoviesPresenter extends PopularPresenter {
     private final MovieSummaryModelMapper movieSummaryMapper;
 
     @Inject
-    public PopularMoviesPresenter(@Named("top20PopularMovies") UseCase useCase, MovieSummaryModelMapper mapper ) {
-        super(useCase);
+    public PopularMoviesPresenter(@Named("top20PopularMovies") UseCase useCase, ConnectionTester connectionTester, MovieSummaryModelMapper mapper ) {
+        super(useCase,connectionTester);
         this.movieSummaryMapper = mapper;
     }
 

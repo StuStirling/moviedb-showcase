@@ -15,8 +15,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import rx.Subscriber;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Stu Stirling on 14/06/16.
@@ -36,7 +38,9 @@ public class PopularTVShowsPresenterTest {
 
     @Test
     public void testInitialisation() {
-        PopularTVShowsPresenter presenter = new PopularTVShowsPresenter(mockedUseCase, new TVShowModelMapper());
+        ConnectionTester connectionTester = mock(ConnectionTester.class);
+        when(connectionTester.isThereAnInternetConnection()).thenReturn(true);
+        PopularTVShowsPresenter presenter = new PopularTVShowsPresenter(mockedUseCase, connectionTester, new TVShowModelMapper());
         presenter.init(mockedView);
 
         verify(mockedView,times(1)).loading(true);

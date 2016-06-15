@@ -15,4 +15,5 @@ import dagger.Component;
 @Component(modules={MockApplicationModule.class})
 public interface TestComponent extends ApplicationComponent {
     void inject(BaseTest test);
+
 }

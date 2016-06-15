@@ -50,6 +50,8 @@ public class PopularMoviesFragmentTest extends BaseTest {
     public void setUp() {
         super.setUp();
 
+        when(mockConnTester.isThereAnInternetConnection()).thenReturn(true);
+
         List<MovieSummary> entities = new ArrayList<>();
         MovieSummary interstellar = new MovieSummary();
         interstellar.setId(231);

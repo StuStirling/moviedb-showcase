@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase.popular.popularpeople;
 
+import com.stustirling.moviedbshowcase.ConnectionTester;
 import com.stustirling.moviedbshowcase.domain.Person;
 import com.stustirling.moviedbshowcase.domain.interactor.UseCase;
 import com.stustirling.moviedbshowcase.model.PersonModel;
@@ -21,8 +22,8 @@ public class PopularPeoplePresenter extends PopularPresenter{
     private final PersonModelMapper mapper;
 
     @Inject
-    public PopularPeoplePresenter(@Named("popularPeople") UseCase useCase, PersonModelMapper mapper ) {
-        super(useCase);
+    public PopularPeoplePresenter(@Named("popularPeople") UseCase useCase, ConnectionTester connectionTester, PersonModelMapper mapper ) {
+        super(useCase,connectionTester);
         this.mapper = mapper;
     }
 

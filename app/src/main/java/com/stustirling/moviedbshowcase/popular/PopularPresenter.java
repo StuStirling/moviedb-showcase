@@ -1,10 +1,8 @@
 package com.stustirling.moviedbshowcase.popular;
 
 import android.accounts.NetworkErrorException;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
+import com.stustirling.moviedbshowcase.ConnectionTester;
 import com.stustirling.moviedbshowcase.domain.interactor.UseCase;
 import com.stustirling.moviedbshowcase.model.PopularModel;
 
@@ -19,35 +17,23 @@ import rx.Subscriber;
 public abstract class PopularPresenter {
 
     private final UseCase useCase;
+    private final ConnectionTester connectionTester;
     protected PopularView view;
     protected ArrayList<PopularModel> modelItems;
-    private Context context;
 
-    public PopularPresenter(UseCase useCase) {
+    public PopularPresenter(UseCase useCase, ConnectionTester connectionTester) {
         this.useCase = useCase;
+        this.connectionTester = connectionTester;
     }
 
-    public void init(PopularView popularView,Context context) {
+    public void init(PopularView popularView) {
         this.view = popularView;
         this.modelItems = new ArrayList<>();
-        this.context = context;
         fetchItems();
     }
 
-
-    private boolean isThereAnInternetConnection() {
-        boolean isConnected;
-
-        ConnectivityManager connectivityManager =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        isConnected = (networkInfo != null && networkInfo.isConnectedOrConnecting());
-
-        return isConnected;
-    }
-
     protected void fetchItems() {
-        if ( isThereAnInternetConnection() ) {
+        if ( connectionTester.isThereAnInternetConnection() ) {
             this.view.loading(true);
             this.useCase.execute(getSubscriber());
         } else

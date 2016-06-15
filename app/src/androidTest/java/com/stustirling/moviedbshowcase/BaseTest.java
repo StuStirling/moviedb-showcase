@@ -18,6 +18,8 @@ public class BaseTest {
 
     @Inject
     protected MovieDBRepository mockRepo;
+    @Inject protected ConnectionTester mockConnTester;
+
 
     @Before
     public void setUp() {

@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase;
 
+import com.stustirling.moviedbshowcase.ConnectionTester;
 import com.stustirling.moviedbshowcase.domain.interactor.GetPopularPeople;
 import com.stustirling.moviedbshowcase.model.mapper.MovieSummaryModelMapper;
 import com.stustirling.moviedbshowcase.model.mapper.PersonModelMapper;
@@ -14,8 +15,10 @@ import org.mockito.MockitoAnnotations;
 import rx.Subscriber;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Stu Stirling on 15/06/16.
@@ -32,7 +35,9 @@ public class PopularPeoplePresenterTest {
 
     @Test
     public void testInitialisation() {
-        PopularPeoplePresenter presenter = new PopularPeoplePresenter(mockedUseCase, new PersonModelMapper( new MovieSummaryModelMapper()));
+        ConnectionTester connectionTester = mock(ConnectionTester.class);
+        when(connectionTester.isThereAnInternetConnection()).thenReturn(true);
+        PopularPeoplePresenter presenter = new PopularPeoplePresenter(mockedUseCase, connectionTester,new PersonModelMapper( new MovieSummaryModelMapper()));
         presenter.init(mockedView);
 
         verify(mockedView,times(1)).loading(true);
