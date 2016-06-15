@@ -35,20 +35,35 @@
                 android:lines="1"
                 android:ellipsize="marquee"
                 android:enabled="false"
-                android:padding="8dp" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="Action, Adventure, Science Fiction"
+                android:id="@+id/tv_cvpm_genres"
+                android:gravity="center_horizontal"
+                android:lines="1"
+                android:ellipsize="end"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Based upon Marvel Comics’ most unconventional anti-hero, DEADPOOL tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life."
                 android:id="@+id/tv_cvpm_overview"
-                android:lines="5"
+                android:lines="3"
                 android:textStyle="italic"
                 android:gravity="center_vertical"
                 android:textColor="@color/popularmovies.cardview.overview"
                 android:ellipsize="end"
                 android:paddingLeft="8dp"
-                android:paddingRight="8dp" />
+                android:paddingRight="8dp"
+                android:layout_marginTop="8dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -32,6 +32,7 @@ public abstract class PopularAdapter extends RecyclerView.Adapter<PopularAdapter
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public @BindView(R.id.tv_cvpm_title) TextView title;
+        public @BindView(R.id.tv_cvpm_genres) TextView genres;
         public @BindView(R.id.tv_cvpm_overview) TextView overview;
         public @BindView(R.id.tv_cvpm_rating) TextView rating;
         public @BindView(R.id.tv_cvpm_year) TextView year;

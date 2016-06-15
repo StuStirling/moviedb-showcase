@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 
 import com.squareup.picasso.Picasso;
+import com.stustirling.moviedbshowcase.MovieGenre;
 import com.stustirling.moviedbshowcase.popular.PopularAdapter;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
@@ -33,6 +34,16 @@ public class PopularMoviesAdapter extends PopularAdapter {
         holder.setRating(movie.getRating());
         holder.setYear(movie.getReleaseDate());
 
+        int[] genres = movie.getGenres();
+        if ( genres.length > 0 ) {
+            StringBuilder builder = new StringBuilder();
+            for ( int i = 0; i < genres.length; i++ ) {
+                builder.append(MovieGenre.getName(genres[i]));
+                if ( i < genres.length - 1 )
+                    builder.append(", ");
+            }
+            holder.genres.setText(builder.toString());
+        }
         if ( movie.getPosterPath() != null ) {
             Picasso.with(holder.getPoster().getContext())
                     .load(Uri.parse(movie.getPosterPath()))

@@ -16,6 +16,7 @@ public class MovieSummaryModel implements Parcelable,PopularModel {
     private String overview;
     private float rating;
     private Date releaseDate;
+    private int[] genres;
 
     public MovieSummaryModel() {
     }
@@ -66,6 +67,14 @@ public class MovieSummaryModel implements Parcelable,PopularModel {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public int[] getGenres() {
+        return genres;
+    }
+
+    public void setGenres(int[] genres) {
+        this.genres = genres;
     }
 
     @Override

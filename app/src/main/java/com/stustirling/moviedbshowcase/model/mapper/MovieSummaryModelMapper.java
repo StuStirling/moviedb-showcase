@@ -29,6 +29,7 @@ public class MovieSummaryModelMapper implements ModelMapper {
             model.setOverview(movieSummary.getOverview());
             model.setRating(movieSummary.getRating());
             model.setReleaseDate(movieSummary.getReleaseDate());
+            model.setGenres(movieSummary.getGenres());
             if ( movieSummary.getPosterPath() != null )
                 model.setPosterPath(MovieDBApi.BASE_IMG_PATH+"w342"+movieSummary.getPosterPath());
         }

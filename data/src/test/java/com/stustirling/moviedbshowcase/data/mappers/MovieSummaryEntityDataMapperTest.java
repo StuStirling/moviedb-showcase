@@ -34,12 +34,14 @@ public class MovieSummaryEntityDataMapperTest {
         float vote_avg = 9.9f;
         Date release_date = new Date();
         String poster_path = "/6iQ4CMtYorKFfAmXEpAQZMnA0Qe.jpg";
+        int[] genreIds = new int[]{37,53};
         when(mockEntity.getId()).thenReturn(id);
         when(mockEntity.getTitle()).thenReturn(title);
         when(mockEntity.getOverview()).thenReturn(overview);
         when(mockEntity.getVoteAverage()).thenReturn(vote_avg);
         when(mockEntity.getReleaseDate()).thenReturn(release_date);
         when(mockEntity.getPosterPath()).thenReturn(poster_path);
+        when(mockEntity.getGenres()).thenReturn(genreIds);
 
         MovieSummary movieSummary = MovieSummaryEntityDataMapper.transform(mockEntity);
         assertEquals(id,movieSummary.getId());
@@ -49,6 +51,7 @@ public class MovieSummaryEntityDataMapperTest {
         assertEquals(poster_path,movieSummary.getPosterPath());
         assertEquals(vote_avg,movieSummary.getRating(),0.01f);
         assertEquals(poster_path,movieSummary.getPosterPath());
+        assertEquals(genreIds,movieSummary.getGenres());
     }
 
     @Test

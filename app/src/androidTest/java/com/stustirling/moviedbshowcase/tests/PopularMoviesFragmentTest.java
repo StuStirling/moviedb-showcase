@@ -44,6 +44,7 @@ public class PopularMoviesFragmentTest extends BaseTest {
     private static final String INTERSTELLAR_OVERVIEW = "Interstellar chronicles the adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.";
     private static final float INTERSTELLAR_RATING = 8.2f;
     private static final String INTERSTELLAR_POSTER = "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
+    private static final int[] INTERSTELLAR_GENRES = new int[]{12,18,878};
 
     @Before
     public void setUp() {
@@ -56,6 +57,8 @@ public class PopularMoviesFragmentTest extends BaseTest {
         interstellar.setOverview(INTERSTELLAR_OVERVIEW);
         interstellar.setRating(INTERSTELLAR_RATING);
         interstellar.setPosterPath(null);
+        interstellar.setGenres(INTERSTELLAR_GENRES);
+
         Calendar releaseDate = Calendar.getInstance();
         releaseDate.set(2015,11,17);
         interstellar.setReleaseDate(releaseDate.getTime());
@@ -75,6 +78,7 @@ public class PopularMoviesFragmentTest extends BaseTest {
         onView(withText(INTERSTELLAR_TITLE)).check(matches(isDisplayed()));
         onView(withText(INTERSTELLAR_OVERVIEW)).check(matches(isDisplayed()));
         onView(withText(Float.valueOf(INTERSTELLAR_RATING).toString())).check(matches(isDisplayed()));
+        onView(withText("Adventure, Drama, Science Fiction")).check(matches(isDisplayed()));
         onView(withText("2015")).check(matches(isDisplayed()));
     }
 

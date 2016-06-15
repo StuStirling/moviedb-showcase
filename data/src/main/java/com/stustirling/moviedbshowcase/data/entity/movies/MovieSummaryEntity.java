@@ -14,6 +14,8 @@ public class MovieSummaryEntity {
     Date release_date;
     String poster_path;
 
+    int[] genre_ids;
+
     public int getId() {
         return id;
     }
@@ -36,5 +38,9 @@ public class MovieSummaryEntity {
 
     public String getPosterPath() {
         return poster_path;
+    }
+
+    public int[] getGenres() {
+        return genre_ids;
     }
 }

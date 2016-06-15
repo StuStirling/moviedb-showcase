@@ -13,6 +13,7 @@ public class MovieSummary implements DomainEntity{
     private float rating;
     private Date releaseDate;
     private String posterPath;
+    private int[] genres;
 
 
     public int getId() {
@@ -63,6 +64,14 @@ public class MovieSummary implements DomainEntity{
         this.releaseDate = releaseDate;
     }
 
+    public int[] getGenres() {
+        return genres;
+    }
+
+    public void setGenres(int[] genres) {
+        this.genres = genres;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -76,4 +85,6 @@ public class MovieSummary implements DomainEntity{
         builder.append("----xxxx----\n");
         return builder.toString();
     }
+
+
 }

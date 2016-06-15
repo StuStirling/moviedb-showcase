@@ -29,6 +29,7 @@ public class MovieSummaryMapperTest {
         movieSummary.setRating(1.4f);
         movieSummary.setReleaseDate(new Date());
         movieSummary.setPosterPath("/alkdjfpasdlaksd.jpg");
+        movieSummary.setGenres(new int[]{23,54});
 
         MovieSummaryModelMapper mapper = new MovieSummaryModelMapper();
         MovieSummaryModel model = mapper.transform(movieSummary);
@@ -38,6 +39,7 @@ public class MovieSummaryMapperTest {
         assertEquals(movieSummary.getRating(), model.getRating(), 0.1f);
         assertEquals(movieSummary.getReleaseDate(), model.getReleaseDate());
         assertEquals(MovieDBApi.BASE_IMG_PATH + "w342" + movieSummary.getPosterPath(), model.getPosterPath());
+        assertEquals(movieSummary.getGenres(),model.getGenres());
     }
 
 }

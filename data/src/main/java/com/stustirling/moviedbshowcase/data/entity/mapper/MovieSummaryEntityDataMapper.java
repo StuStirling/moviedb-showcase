@@ -21,6 +21,7 @@ public class MovieSummaryEntityDataMapper {
             movieSummary.setPosterPath(entity.getPosterPath());
             movieSummary.setRating(entity.getVoteAverage());
             movieSummary.setReleaseDate(entity.getReleaseDate());
+            movieSummary.setGenres(entity.getGenres());
         }
         return movieSummary;
     }
