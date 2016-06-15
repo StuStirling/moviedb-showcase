@@ -63,6 +63,11 @@ public class PopularPeopleAdapter extends RecyclerView.Adapter<PopularPeopleAdap
     }
 
     @Override
+    public long getItemId(int position) {
+        return popularPeople.get(position).getId();
+    }
+
+    @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         PersonModel person = popularPeople.get(position);
         holder.name.setText(person.getName());

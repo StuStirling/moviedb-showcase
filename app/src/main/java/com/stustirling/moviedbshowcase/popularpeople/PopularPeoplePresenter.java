@@ -54,9 +54,25 @@ public class PopularPeoplePresenter {
         }
     };
 
+    public void filterPeople(String query) {
+        final List<PersonModel> filteredPeople = new ArrayList<>();
+        if (query.length() == 0 )
+            filteredPeople.addAll(mapper.transform(personsList));
+        else {
+            for (Person person : personsList ) {
+                final String lowerCaseTitle = person.getName().toLowerCase();
+                if (lowerCaseTitle.contains(query.toLowerCase()))
+                    filteredPeople.add(mapper.transform(person));
+            }
+        }
+        view.showFilteredPeople(filteredPeople);
+    }
+
     public interface PopularPeopleView {
         void loading(boolean loading);
         void refreshPopularPeople(List<PersonModel> people);
+
+        void showFilteredPeople(List<PersonModel> filteredPeople);
     }
 
 
