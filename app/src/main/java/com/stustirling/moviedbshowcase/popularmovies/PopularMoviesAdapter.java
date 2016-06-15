@@ -1,6 +1,7 @@
 package com.stustirling.moviedbshowcase.popularmovies;
 
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,13 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
                     clickListener.movieSummarySelected( popularMovies.get(getAdapterPosition()),poster,overview,rating);
                 }
             });
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                poster.setTransitionName(itemView.getContext().getString(R.string.transition_movie_poster));
+//                overview.setTransitionName(itemView.getContext().getString(R.string.transition_movie_overview));
+            }
         }
+
     }
 
     private List<MovieSummaryModel> popularMovies;

@@ -1,6 +1,7 @@
 package com.stustirling.moviedbshowcase.tvshows;
 
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,10 @@ public class PopularTVShowsAdapter extends RecyclerView.Adapter<PopularTVShowsAd
                     clickListener.tvShowSelected( popularTVShows.get(getAdapterPosition()),poster,overview,rating);
                 }
             });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                poster.setTransitionName(itemView.getContext().getString(R.string.transition_tvshow_poster));
+//                overview.setTransitionName(itemView.getContext().getString(R.string.transition_tvshow_overview));
+            }
         }
     }
 

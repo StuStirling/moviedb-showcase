@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_tsda_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".moviedetails.MovieDetailsActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tv_tsda_tagline"
+        android:padding="8dp"
+        android:textStyle="italic"
+        tools:text="How much can you know about yourself if you've never been in a fight?"
+        android:gravity="center_horizontal"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_tsda_rating_container">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/iv_tsda_rating"
+            android:src="@drawable/ic_grade"
+            android:tint="@color/rating"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="7.3/10"
+            android:id="@+id/tv_tsda_rating"
+            android:transitionName="details_rating"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            tools:text="(4,705 votes)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_tsda_vote_count"
+            android:transitionName="details_rating"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_tsda_poster"
+        android:src="@mipmap/poster_placeholder"
+        android:transitionName="@string/transition_tvshow_poster"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/overview"
+        android:id="@+id/tv_tsda_overview_title"
+        android:paddingLeft="4dp"
+        android:layout_marginTop="12dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tv_tsda_overview"
+        android:padding="8dp"
+        android:transitionName="@string/transition_tvshow_overview"
+        tools:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground &apos;fight clubs&apos; forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion."/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="1dp"
+        android:id="@+id/vs_tsda_above_runtime"
+        android:background="#919191" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_tsda_released_container"
+        android:padding="8dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/first_aired"
+            android:id="@+id/first_aired_title"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            tools:text="12/08/2016"
+            android:layout_width="match_parent"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/tv_tsda_first_aired_value"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

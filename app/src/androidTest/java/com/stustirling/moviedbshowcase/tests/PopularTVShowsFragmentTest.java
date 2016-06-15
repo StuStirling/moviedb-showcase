@@ -1,5 +1,6 @@
 package com.stustirling.moviedbshowcase.tests;
 
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -80,15 +81,17 @@ public class PopularTVShowsFragmentTest extends BaseTest {
     }
 
     @Test
-    public void shouldShowMovieDetails() {
-//        activityRule.launchActivity( null );
-//
-//        onView(withId(R.id.rv_pmf_movies))
-//                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
-//
-//        onView(withId(R.id.ll_mda_container)).check(matches(isDisplayed()));
-//
-//        onView(withText(INTERSTELLAR_OVERVIEW)).check(matches(isDisplayed()));
+    public void shouldShowTVShowDetails() {
+        activityRule.launchActivity( null );
+
+        onView(withText(R.string.tab2_title)).perform(click());
+
+        onView(withId(R.id.rv_ptf_tvshows))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+
+        onView(withId(R.id.ll_tsda_container)).check(matches(isDisplayed()));
+
+        onView(withText(BREAKING_BAD_OVERVIEW)).check(matches(isDisplayed()));
     }
 
 }

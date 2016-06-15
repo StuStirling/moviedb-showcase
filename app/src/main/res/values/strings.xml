@@ -19,5 +19,11 @@
     <string name="runtime">Runtime</string>
     <string name="runtime_format">%1$d minutes</string>
     <string name="released">Released</string>
+    <string name="first_aired">First Aired</string>
+    <string name="transition_movie_poster">movie_poster</string>
+    <string name="transition_movie_overview">movie_poster</string>
+    <string name="transition_tvshow_poster">tvshow_poster</string>
+    <string name="transition_tvshow_overview">tvshow_overview</string>
+    <string name="overview">Overview</string>
 
 </resources>

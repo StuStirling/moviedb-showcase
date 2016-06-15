@@ -118,9 +118,9 @@ public class PopularMoviesFragment extends BaseFragment implements PopularMovies
 
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
             Pair<View,String> pair1 = Pair.create((View)poster,poster.getTransitionName());
-            Pair<View,String> pair2 = Pair.create((View)overview,overview.getTransitionName());
+//            Pair<View,String> pair2 = Pair.create((View)overview,overview.getTransitionName());
 //            Pair<View,String> pair3 = Pair.create((View)rating,rating.getTransitionName());
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair1,pair2);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair1);
             startActivity(intent,options.toBundle());
         } else {
             startActivity(intent);

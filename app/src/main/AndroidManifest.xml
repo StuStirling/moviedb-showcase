@@ -25,6 +25,10 @@
             android:name=".moviedetails.MovieDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
+        <activity
+            android:name=".tvshowdetails.TVShowDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     </application>
 
 </manifest>

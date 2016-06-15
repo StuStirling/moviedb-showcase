@@ -2,9 +2,13 @@ package com.stustirling.moviedbshowcase.tvshows;
 
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +23,7 @@ import com.stustirling.moviedbshowcase.BaseFragment;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
+import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsActivity;
 
 import java.util.List;
 
@@ -116,17 +121,17 @@ public class PopularTVShowsFragment extends BaseFragment implements PopularTVSho
 
     @Override
     public void tvShowSelected(TVShowModel tvShow, ImageView poster, TextView overview, TextView rating) {
-        /*Intent intent = MovieDetailsActivity.launchIntent(getContext(),tvShow);
+        Intent intent = TVShowDetailsActivity.launchIntent(getContext(),tvShow);
 
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
             Pair<View,String> pair1 = Pair.create((View)poster,poster.getTransitionName());
-            Pair<View,String> pair2 = Pair.create((View)overview,overview.getTransitionName());
+//            Pair<View,String> pair2 = Pair.create((View)overview,overview.getTransitionName());
 //            Pair<View,String> pair3 = Pair.create((View)rating,rating.getTransitionName());
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair1,pair2);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair1);
             startActivity(intent,options.toBundle());
         } else {
             startActivity(intent);
-        }*/
+        }
     }
 
 

@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             tools:text="7.3/10"
             android:id="@+id/tv_mda_rating"
-            android:transitionName="details_rating"
             android:layout_gravity="center_vertical"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -48,7 +47,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_mda_vote_count"
-            android:transitionName="details_rating"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:layout_gravity="center_vertical"
@@ -61,7 +59,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/iv_mda_poster"
         android:src="@mipmap/poster_placeholder"
-        android:transitionName="popular_movie"
+        android:transitionName="@string/transition_movie_poster"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -81,7 +79,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/tv_mda_overview"
         android:padding="8dp"
-        android:transitionName="details_overview"
         tools:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground &apos;fight clubs&apos; forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion."/>
 
     <View
