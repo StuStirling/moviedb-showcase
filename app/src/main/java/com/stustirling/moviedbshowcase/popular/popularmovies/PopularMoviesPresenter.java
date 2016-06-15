@@ -40,7 +40,6 @@ public class PopularMoviesPresenter extends PopularPresenter {
 
         @Override
         public void onNext(List<MovieSummary> movieSummaries) {
-
             PopularMoviesPresenter.this.modelItems.addAll(movieSummaryMapper.transform(movieSummaries));
         }
     };

@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.stustirling.moviedbshowcase.BaseFragment;
 import com.stustirling.moviedbshowcase.R;
@@ -69,13 +70,12 @@ public abstract class PopularFragment extends BaseFragment implements PopularPre
         super.onPause();
         if ( refreshLayout.isRefreshing() )
             animateSwipeRefresh(false);
+        getPresenter().resetFullItemList();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if ( getPresenter() != null )
-            getPresenter().filterItems("");
     }
 
     @Override
@@ -86,7 +86,7 @@ public abstract class PopularFragment extends BaseFragment implements PopularPre
 
     protected void init() {
         injectWithComponent(getComponent(MovieDBComponent.class));
-        getPresenter().init(this);
+        getPresenter().init(this,getContext());
     }
 
     protected abstract void injectWithComponent(MovieDBComponent component);
@@ -108,6 +108,8 @@ public abstract class PopularFragment extends BaseFragment implements PopularPre
         });
     }
 
+
+
     protected abstract PopularPresenter getPresenter();
     protected abstract PopularAdapter getAdapter();
 
@@ -125,6 +127,12 @@ public abstract class PopularFragment extends BaseFragment implements PopularPre
     @Override
     public void loading(boolean loading) {
         animateSwipeRefresh(loading);
+    }
+
+    @Override
+    public void displayError(Throwable e) {
+        Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+        animateSwipeRefresh(false);
     }
 
     @Override

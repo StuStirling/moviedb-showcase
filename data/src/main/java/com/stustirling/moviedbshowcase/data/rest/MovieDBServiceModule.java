@@ -1,6 +1,7 @@
 package com.stustirling.moviedbshowcase.data.rest;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -46,6 +47,9 @@ public class MovieDBServiceModule {
                 return chain.proceed(request);
             }
         });
+
+        httpClient.readTimeout(20, TimeUnit.SECONDS);
+        httpClient.connectTimeout(20,TimeUnit.SECONDS);
 
         return new Retrofit.Builder()
                 .baseUrl(MovieDBApi.BASE_URL)
