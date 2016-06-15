@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.popularmovies;
+package com.stustirling.moviedbshowcase.tvshows;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.stustirling.moviedbshowcase.R;
-import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
+import com.stustirling.moviedbshowcase.model.TVShowModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,9 +23,9 @@ import butterknife.ButterKnife;
 /**
  * Created by Stu Stirling on 10/06/16.
  */
-public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdapter.ViewHolder> {
+public class PopularTVShowsAdapter extends RecyclerView.Adapter<PopularTVShowsAdapter.ViewHolder> {
 
-    private MovieSummaryClickListener clickListener;
+    private TVShowClickListener clickListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,43 +41,43 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickListener.movieSummarySelected( popularMovies.get(getAdapterPosition()),poster,overview,rating);
+                    clickListener.tvShowSelected( popularTVShows.get(getAdapterPosition()),poster,overview,rating);
                 }
             });
         }
     }
 
-    private List<MovieSummaryModel> popularMovies;
+    private List<TVShowModel> popularTVShows;
 
-    public PopularMoviesAdapter(MovieSummaryClickListener clickListener ) {
+    public PopularTVShowsAdapter(TVShowClickListener clickListener ) {
         super();
-        this.popularMovies = new ArrayList<>();
+        this.popularTVShows = new ArrayList<>();
         this.clickListener = clickListener;
     }
 
-    public void updatePopularMovies(List<MovieSummaryModel> popularMovies ) {
-        this.popularMovies = popularMovies;
+    public void updatePopularTVShows(List<TVShowModel> popularTVShows) {
+        this.popularTVShows = popularTVShows;
         this.notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return popularMovies.size();
+        return popularTVShows.size();
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        MovieSummaryModel movie = popularMovies.get(position);
-        holder.title.setText(movie.getTitle());
-        holder.overview.setText(movie.getOverview());
-        holder.rating.setText(String.format(Locale.getDefault(),"%.1f",movie.getRating()));
+        TVShowModel tvShow = popularTVShows.get(position);
+        holder.title.setText(tvShow.getName());
+        holder.overview.setText(tvShow.getOverview());
+        holder.rating.setText(String.format(Locale.getDefault(),"%.1f",tvShow.getVoteAvg()));
         Calendar cal = Calendar.getInstance();
-        cal.setTime(movie.getReleaseDate());
+        cal.setTime(tvShow.getFirstAirDate());
         holder.year.setText(String.format(Locale.getDefault(),"%d",cal.get(Calendar.YEAR)));
 
-        if ( movie.getPosterPath() != null ) {
+        if ( tvShow.getPosterPath() != null ) {
             Picasso.with(holder.poster.getContext())
-                    .load(Uri.parse(movie.getPosterPath()))
+                    .load(Uri.parse(tvShow.getPosterPath()))
                     .into(holder.poster);
         }
     }
@@ -89,8 +89,8 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         return new ViewHolder(itemView);
     }
 
-    interface MovieSummaryClickListener {
-        void movieSummarySelected(MovieSummaryModel movieSummaryModel,ImageView poster,TextView overview,TextView rating);
+    interface TVShowClickListener {
+        void tvShowSelected(TVShowModel model, ImageView poster, TextView overview, TextView rating);
     }
 
 }

@@ -17,8 +17,8 @@ import android.widget.TextView;
 import com.stustirling.moviedbshowcase.internal.di.HasComponent;
 import com.stustirling.moviedbshowcase.internal.di.components.DaggerMovieDBComponent;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
-import com.stustirling.moviedbshowcase.internal.di.modules.PopularMoviesModule;
 import com.stustirling.moviedbshowcase.popularmovies.PopularMoviesFragment;
+import com.stustirling.moviedbshowcase.tvshows.PopularTVShowsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,7 +64,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MovieDBCo
         movieDBComponent = DaggerMovieDBComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
-                .popularMoviesModule( new PopularMoviesModule())
                 .build();
     }
 
@@ -147,6 +146,8 @@ public class MainActivity extends BaseActivity implements HasComponent<MovieDBCo
             // Return a PlaceholderFragment (defined as a static inner class below).
             if ( position == 0 )
                 return new PopularMoviesFragment();
+            else if ( position == 1 )
+                return new PopularTVShowsFragment();
             else
                 return PlaceholderFragment.newInstance(position + 1);
         }

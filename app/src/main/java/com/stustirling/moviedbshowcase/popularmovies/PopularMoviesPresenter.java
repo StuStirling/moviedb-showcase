@@ -3,7 +3,7 @@ package com.stustirling.moviedbshowcase.popularmovies;
 import android.util.Log;
 
 import com.stustirling.moviedbshowcase.domain.MovieSummary;
-import com.stustirling.moviedbshowcase.domain.interactor.GetTop20PopularMovies;
+import com.stustirling.moviedbshowcase.domain.interactor.UseCase;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 import com.stustirling.moviedbshowcase.model.mapper.MovieSummaryModelMapper;
 
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import rx.Subscriber;
 
@@ -19,13 +20,13 @@ import rx.Subscriber;
  */
 public class PopularMoviesPresenter {
 
-    private final GetTop20PopularMovies getPopularMoviesUseCase;
+    private final UseCase getPopularMoviesUseCase;
     private final MovieSummaryModelMapper movieSummaryMapper;
     private PopularMoviesView popularMoviesView;
     private List<MovieSummary> movieSummaries;
 
     @Inject
-    public PopularMoviesPresenter(GetTop20PopularMovies useCase, MovieSummaryModelMapper mapper ) {
+    public PopularMoviesPresenter(@Named("top20PopularMovies") UseCase useCase, MovieSummaryModelMapper mapper ) {
         super();
         this.getPopularMoviesUseCase = useCase;
         this.movieSummaryMapper = mapper;
@@ -35,7 +36,7 @@ public class PopularMoviesPresenter {
         this.popularMoviesView = popularMoviesView;
         this.popularMoviesView.loading(true);
         this.movieSummaries = new ArrayList<>();
-        getPopularMoviesUseCase.execute(subscriber);
+        this.getPopularMoviesUseCase.execute(subscriber);
     }
 
     Subscriber<List<MovieSummary>> subscriber = new Subscriber<List<MovieSummary>>() {
