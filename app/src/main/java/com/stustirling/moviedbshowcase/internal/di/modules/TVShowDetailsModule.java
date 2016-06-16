@@ -2,7 +2,7 @@ package com.stustirling.moviedbshowcase.internal.di.modules;
 
 import com.stustirling.moviedbshowcase.internal.di.PerActivity;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
-import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsPresenter;
+import com.stustirling.moviedbshowcase.details.tvshow.TVShowDetailsPresenter;
 
 import dagger.Module;
 import dagger.Provides;

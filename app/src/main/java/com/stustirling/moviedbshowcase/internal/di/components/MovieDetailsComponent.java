@@ -4,7 +4,7 @@ import com.stustirling.moviedbshowcase.domain.interactor.GetMovieDetails;
 import com.stustirling.moviedbshowcase.internal.di.PerActivity;
 import com.stustirling.moviedbshowcase.internal.di.modules.ActivityModule;
 import com.stustirling.moviedbshowcase.internal.di.modules.MovieDetailsModule;
-import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsActivity;
+import com.stustirling.moviedbshowcase.details.movie.MovieDetailsActivity;
 
 import dagger.Component;
 

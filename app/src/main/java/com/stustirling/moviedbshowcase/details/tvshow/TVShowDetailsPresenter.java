@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.tvshowdetails;
+package com.stustirling.moviedbshowcase.details.tvshow;
 
 import com.stustirling.moviedbshowcase.model.TVShowModel;
 

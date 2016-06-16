@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.stustirling.moviedbshowcase.internal.di.components.MovieDBComponent;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
 import com.stustirling.moviedbshowcase.model.PopularModel;
-import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsActivity;
+import com.stustirling.moviedbshowcase.details.movie.MovieDetailsActivity;
 import com.stustirling.moviedbshowcase.popular.PopularAdapter;
 import com.stustirling.moviedbshowcase.popular.PopularFragment;
 import com.stustirling.moviedbshowcase.popular.PopularPresenter;

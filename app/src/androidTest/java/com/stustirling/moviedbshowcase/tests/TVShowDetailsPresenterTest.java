@@ -1,7 +1,7 @@
 package com.stustirling.moviedbshowcase.tests;
 
 import com.stustirling.moviedbshowcase.model.TVShowModel;
-import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsPresenter;
+import com.stustirling.moviedbshowcase.details.tvshow.TVShowDetailsPresenter;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.tvshowdetails;
+package com.stustirling.moviedbshowcase.details.tvshow;
 
 import android.content.Context;
 import android.content.Intent;

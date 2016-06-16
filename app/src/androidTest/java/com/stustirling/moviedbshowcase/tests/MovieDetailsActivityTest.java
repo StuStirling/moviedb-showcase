@@ -9,7 +9,7 @@ import com.stustirling.moviedbshowcase.BaseTest;
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.model.MovieSummaryModel;
-import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsActivity;
+import com.stustirling.moviedbshowcase.details.movie.MovieDetailsActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

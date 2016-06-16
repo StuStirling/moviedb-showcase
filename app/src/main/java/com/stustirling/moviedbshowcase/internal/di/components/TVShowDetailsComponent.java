@@ -3,7 +3,7 @@ package com.stustirling.moviedbshowcase.internal.di.components;
 import com.stustirling.moviedbshowcase.internal.di.PerActivity;
 import com.stustirling.moviedbshowcase.internal.di.modules.ActivityModule;
 import com.stustirling.moviedbshowcase.internal.di.modules.TVShowDetailsModule;
-import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsActivity;
+import com.stustirling.moviedbshowcase.details.tvshow.TVShowDetailsActivity;
 
 import dagger.Component;
 

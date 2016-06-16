@@ -2,7 +2,7 @@ package com.stustirling.moviedbshowcase.tests;
 
 import com.stustirling.moviedbshowcase.domain.interactor.GetMovieDetails;
 import com.stustirling.moviedbshowcase.model.mapper.MovieDetailsModelMapper;
-import com.stustirling.moviedbshowcase.moviedetails.MovieDetailsPresenter;
+import com.stustirling.moviedbshowcase.details.movie.MovieDetailsPresenter;
 
 import org.junit.Before;
 import org.junit.Test;

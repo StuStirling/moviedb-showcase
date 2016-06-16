@@ -23,11 +23,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".moviedetails.MovieDetailsActivity"
+            android:name=".details.movie.MovieDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".tvshowdetails.TVShowDetailsActivity"
+            android:name=".details.tvshow.TVShowDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
     </application>

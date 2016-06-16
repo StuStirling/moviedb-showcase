@@ -1,4 +1,4 @@
-package com.stustirling.moviedbshowcase.moviedetails;
+package com.stustirling.moviedbshowcase.details.movie;
 
 import com.stustirling.moviedbshowcase.domain.MovieDetails;
 import com.stustirling.moviedbshowcase.domain.interactor.GetMovieDetails;

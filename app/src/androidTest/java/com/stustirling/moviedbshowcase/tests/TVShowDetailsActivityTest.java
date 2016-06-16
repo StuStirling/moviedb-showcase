@@ -7,7 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.stustirling.moviedbshowcase.R;
 import com.stustirling.moviedbshowcase.model.TVShowModel;
-import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsActivity;
+import com.stustirling.moviedbshowcase.details.tvshow.TVShowDetailsActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

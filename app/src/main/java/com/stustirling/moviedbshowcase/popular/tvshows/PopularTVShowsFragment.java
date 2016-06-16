@@ -16,7 +16,7 @@ import com.stustirling.moviedbshowcase.model.TVShowModel;
 import com.stustirling.moviedbshowcase.popular.PopularAdapter;
 import com.stustirling.moviedbshowcase.popular.PopularFragment;
 import com.stustirling.moviedbshowcase.popular.PopularPresenter;
-import com.stustirling.moviedbshowcase.tvshowdetails.TVShowDetailsActivity;
+import com.stustirling.moviedbshowcase.details.tvshow.TVShowDetailsActivity;
 
 import javax.inject.Inject;
 
