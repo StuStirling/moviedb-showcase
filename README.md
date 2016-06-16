@@ -2,6 +2,8 @@
 
 An example application using the latest practices, principles and Android features. It uses the themoviedb.org's API to retrieve the top 20 popular movies, tv shows and people and display them in their own lists. Each of these lists are searchable. When a movie or tv show is selected it opens the details view.
 
+[View Demo on YouTube]
+
 ## Architecture
 
 The idea behind the architecture for this app is based heavily on Fernando Cejas' [Android-CleanArchitecture] project which, in turn, uses Uncle Bob's clean coding principles.
@@ -20,3 +22,4 @@ Throughout the process of developing the application, TDD was the driving force.
 
 
   [Android-CleanArchitecture]: <https://github.com/android10/Android-CleanArchitecture>
+  [View Demo on YouTube]: <https://youtu.be/eeC4fTVXwD8>
